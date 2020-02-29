@@ -72,11 +72,11 @@ rankshift <- rank_shift(df=Carapa,
 rankshift
 
 #Select the final time point from the returned time.var_pair
-rankshift$year <- as.numeric(substr(rankshift$year_pair, 1,1))
+rankshift$samp_event <- seq(1, 108)
 rankshift
 
 # Create the graph
-rankshift.graph <- ggplot(rankshift, aes(year, MRS)) + 
+rankshift.graph <- ggplot(rankshift, aes(samp_event, MRS)) + 
   geom_line(size = 1) + 
   theme_bw() 
 
