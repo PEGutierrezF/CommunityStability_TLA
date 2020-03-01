@@ -86,6 +86,13 @@ rankshift.graph
 
 ########### Run the rate change code ########
 
+rateChanges <- rate_change(Carapa,   
+                                   time.var= "time",    
+                                   species.var= "taxa",  
+                                   abundance.var= "abundance")
+rateChanges
+
+
 rateChange <- rate_change_interval(Carapa,   
                                  time.var= "time",    
                                  species.var= "taxa",  
@@ -113,12 +120,20 @@ stab
 ####### Calculate variance ratio, merge with stab ##########
 
 
+# VARIANCE RATIO The
+
+# If species vary independently, then the variance ratio will be
+# close to 1. Avariance ratio <1 indicates predominately 
+# negative species covariance, whereas a variance ratio 
+# >1 indicates that species generally positively covary.
+
 vRatio <- merge(variance_ratio(Carapa, time.var = "time",
                            species.var = "taxa",
                            abundance.var = "abundance",
                            bootnumber=1, 
                            average.replicates = F), stab)
 vRatio
+
 
 vr.graph <-ggplot(vRatio, aes(x=VR, y=stability)) + 
   geom_point(size=3) +
