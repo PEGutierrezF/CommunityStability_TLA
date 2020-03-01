@@ -8,7 +8,7 @@ library(dplyr)
 library(tidyr)
 
 
-Carapa<-read.csv("D:/Curriculum/02_ Articulos/00 In progress/220 Community stability/CommunityStability_TLA/codyCarapa.csv",h=T) # read the accompanying csv file
+Carapa<-read.csv("D:/Curriculum/02_ Articulos/00 In progress/220 Community stability/Community_Stability_TLA/codyCarapa.csv",h=T) # read the accompanying csv file
 head(Carapa)
 
 
