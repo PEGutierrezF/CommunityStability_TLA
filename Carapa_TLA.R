@@ -1,5 +1,7 @@
 
 
+# https://mran.microsoft.com/snapshot/2016-01-12/web/packages/codyn/vignettes/Temporal_Diversity_Indices.html
+
 library(ggplot2)
 library(grid)
 library(gridExtra)
@@ -17,7 +19,8 @@ head(Carapa)
 turnover <- turnover(df = Carapa,  
                          time.var = "time",  
                          species.var = "taxa", 
-                         abundance.var = "abundance")
+                         abundance.var = "abundance",
+                     replicate.var = NA)
 
 turnover
 
