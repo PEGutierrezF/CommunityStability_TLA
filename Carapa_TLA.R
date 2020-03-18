@@ -1,6 +1,8 @@
 
 
 # https://mran.microsoft.com/snapshot/2016-01-12/web/packages/codyn/vignettes/Temporal_Diversity_Indices.html
+# https://scholar.google.com.pr/scholar?cites=17191641760846515355&as_sdt=2005&sciodt=0,5&hl=en&authuser=1
+
 
 library(ggplot2)
 library(grid)
@@ -14,8 +16,10 @@ Carapa<-read.csv("D:/Curriculum/02_ Articulos/00 In progress/220 Community stabi
 head(Carapa)
 
 
-############ Run the turnover code #############
-  
+
+# Turnover code -----------------------------------------------------------
+
+
 turnover <- turnover(df = Carapa,  
                          time.var = "time",  
                          species.var = "taxa", 
@@ -64,8 +68,7 @@ turn.graph <- ggplot(allturnover, aes(x=time, y=turnover, color=metric)) +
 turn.graph 
 
 
-############ #Run the rank shift code ##########
-
+# Run the rank shift code -------------------------------------------------
 
 rankshift <- rank_shift(df=Carapa, 
                         time.var = "time", 
@@ -87,7 +90,9 @@ rankshift.graph <- ggplot(rankshift, aes(samp_event, MRS)) +
 rankshift.graph
 
 
-########### Run the rate change code ########
+
+# Rate change code --------------------------------------------------------
+
 
 rateChanges <- rate_change(Carapa,   
                                    time.var= "time",    
@@ -111,7 +116,8 @@ rate.graph<-ggplot(rateChange, aes(interval, distance)) +
 rate.graph 
 
 
-########### Calculate community stability ##############
+# Calculate community stability -------------------------------------------
+
 
 
 stab <- community_stability(Carapa, 
