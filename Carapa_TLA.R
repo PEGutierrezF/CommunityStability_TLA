@@ -3,6 +3,13 @@
 # https://mran.microsoft.com/snapshot/2016-01-12/web/packages/codyn/vignettes/Temporal_Diversity_Indices.html
 # https://scholar.google.com.pr/scholar?cites=17191641760846515355&as_sdt=2005&sciodt=0,5&hl=en&authuser=1
 
+# section lable -----------------------------
+# 28 Mar 2020
+#PEGF
+#--------------------------------------------
+#
+
+
 
 library(ggplot2)
 library(grid)
@@ -12,7 +19,7 @@ library(dplyr)
 library(tidyr)
 
 
-Carapa<-read.csv("D:/Curriculum/02_ Articulos/00 In progress/220 Community stability/Community_Stability_TLA/codyCarapa.csv",h=T) # read the accompanying csv file
+Carapa<-read.csv("codyCarapa.csv") # read the accompanying csv file
 head(Carapa)
 
 
