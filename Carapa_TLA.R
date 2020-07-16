@@ -35,6 +35,11 @@ turnover <- turnover(df = Carapa,
 
 turnover
 
+min(turnover[,1])
+max(turnover[,1])
+mean(turnover[,1])
+
+
 appearance <- turnover(df = Carapa,  
                            time.var = "time",  
                            species.var = "taxa", 
@@ -61,18 +66,18 @@ names(appearance)[1]="turnover"
 disappearance$metric<-"disappearance"
 names(disappearance)[1]="turnover"
 
-allturnover<-rbind(turnover, appearance, disappearance)
+allturnoverCarapa <-rbind(turnover, appearance, disappearance)
 
-allturnover
+allturnoverCarapa
 
 
 #Create the graph
-turn.graph <- ggplot(allturnover, aes(x=time, y=turnover, color=metric)) + 
+turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metric)) + 
   geom_line(size = 1) +  
   theme_bw() + 
-  theme(legend.position="bottom")
+  theme(legend.position = "none")
 
-turn.graph 
+turn.graphCarapa 
 
 
 # Run the rank shift code -------------------------------------------------

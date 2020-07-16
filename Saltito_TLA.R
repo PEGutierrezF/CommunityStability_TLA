@@ -17,8 +17,9 @@ library(gridExtra)
 library(codyn)
 library(dplyr)
 library(tidyr)
+library(patchwork)
 
-
+collins08
 Saltito<-read.csv("codySaltito.csv") # read the accompanying csv file
 head(Saltito)
 
@@ -33,6 +34,10 @@ turnoverSaltito <- turnover(df = Saltito,
                      replicate.var = NA)
 
 turnoverSaltito
+min(turnoverSaltito[,1])
+max(turnoverSaltito[,1])
+mean(turnoverSaltito[,1])
+
 
 appearanceSaltito <- turnover(df = Saltito,  
                            time.var = "time",  
@@ -66,13 +71,15 @@ allturnoverSaltito
 
 
 #Create the graph
-turn.graph <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=metric)) + 
+turn.graphSaltito <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=metric)) + 
   geom_line(size = 1) +  
   theme_bw() + 
   theme(legend.position="bottom")
 
-turn.graph 
+turn.graphSaltito 
 
+T1 <- turn.graphCarapa / turn.graphSaltito
+T1 + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
 
 # Run the rank shift code -------------------------------------------------
 
@@ -100,7 +107,7 @@ rankshift.graph
 # Rate change code --------------------------------------------------------
 
 
-rateChanges <- rate_change(Carapa,   
+rateChanges <- rate_change(Saltito,   
                                    time.var= "time",    
                                    species.var= "taxa",  
                                    abundance.var= "abundance")
