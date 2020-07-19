@@ -83,7 +83,7 @@ T1 + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
 
 # Run the rank shift code -------------------------------------------------
 
-rankshift <- rank_shift(df=Carapa, 
+rankshift <- rank_shift(df=Saltito, 
                         time.var = "time", 
                         species.var = "taxa",
                         abundance.var = "abundance")
@@ -91,7 +91,7 @@ rankshift <- rank_shift(df=Carapa,
 rankshift
 
 #Select the final time point from the returned time.var_pair
-rankshift$samp_event <- seq(1, 108)
+rankshift$samp_event <- seq(1, 122)
 rankshift
 
 # Create the graph
@@ -114,7 +114,7 @@ rateChanges <- rate_change(Saltito,
 rateChanges
 
 
-rateChange <- rate_change_interval(Carapa,   
+rateChange <- rate_change_interval(Saltito,   
                                  time.var= "time",    
                                  species.var= "taxa",  
                                  abundance.var= "abundance")
