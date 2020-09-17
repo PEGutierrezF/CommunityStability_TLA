@@ -89,6 +89,10 @@ rankshift <- rank_shift(df=Carapa,
 
 rankshift
 
+min(rankshift[,2])
+max(rankshift[,2])
+mean(rankshift[,2])
+
 #Select the final time point from the returned time.var_pair
 rankshift$samp_event <- seq(1, 122)
 rankshift
