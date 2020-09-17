@@ -90,7 +90,7 @@ rankshift <- rank_shift(df=Carapa,
 rankshift
 
 #Select the final time point from the returned time.var_pair
-rankshift$samp_event <- seq(1, 108)
+rankshift$samp_event <- seq(1, 122)
 rankshift
 
 # Create the graph
@@ -102,9 +102,7 @@ rankshift.graph <- ggplot(rankshift, aes(samp_event, MRS)) +
 rankshift.graph
 
 
-
 # Rate change code --------------------------------------------------------
-
 
 rateChanges <- rate_change(Carapa,   
                                    time.var= "time",    
@@ -162,3 +160,50 @@ vr.graph <-ggplot(vRatio, aes(x=VR, y=stability)) +
   theme(text= element_text(size = 14))
 
 vr.graph
+
+
+
+
+
+# Synchrony ---------------------------------------------------------------
+# Calculate synchrony via gross, merge with stab
+
+## Calculate community stability
+stab <- community_stability(Carapa, 
+                            time.var = "time",
+                            abundance.var = "abundance",
+                            replicate.var=NA)
+stab
+
+# Calculate synchrony via loreau, merge with stab
+synch_loreau<-merge(synchrony(Carapa, 
+                              time.var = "time",
+                              species.var = "taxa",
+                              abundance.var = "abundance",
+                              replicate.var =NA),stab)
+synch_loreau
+
+
+# Calculate synchrony via gross, merge with stab
+synch_gross<-merge(synchrony(Carapa, 
+                             time.var = "time",
+                             species.var = "taxa",
+                             abundance.var = "abundance",
+                             replicate=NA,
+                             metric="Gross"), 
+                   stab)
+
+synch_gross
+
+loreau.graph <-ggplot(synch_loreau, aes(x=synchrony, y=stability)) + 
+  geom_point(size=3) + 
+  theme_bw() +   
+  theme(text= element_text(size = 14))
+loreau.graph
+
+
+gross.graph <-ggplot(synch_gross, aes(x=synchrony, y=stability)) + 
+  geom_point(size=3) + 
+  theme_bw() +   
+  theme(text= element_text(size = 14))
+gross.graph
