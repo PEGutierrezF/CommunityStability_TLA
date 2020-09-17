@@ -21,7 +21,7 @@ library(tidyr)
 
 Carapa<-read.csv("codyCarapa.csv") # read the accompanying csv file
 head(Carapa)
-collins08
+
 
 
 # Turnover code -----------------------------------------------------------
@@ -97,8 +97,6 @@ rankshift
 rankshift.graph <- ggplot(rankshift, aes(samp_event, MRS)) + 
   geom_line(size = 1) + 
   theme_bw() 
-
-
 rankshift.graph
 
 
@@ -126,84 +124,52 @@ rate.graph<-ggplot(rateChange, aes(interval, distance)) +
 rate.graph 
 
 
+###########################################################################
 # Calculate community stability -------------------------------------------
+##########################################################################
 
-
-
-stab <- community_stability(Carapa, 
-                            time.var = "time",
-                            abundance.var = "abundance")
-stab
-
-
-####### Calculate variance ratio, merge with stab ##########
-
-
-# VARIANCE RATIO The
-
-# If species vary independently, then the variance ratio will be
-# close to 1. Avariance ratio <1 indicates predominately 
-# negative species covariance, whereas a variance ratio 
-# >1 indicates that species generally positively covary.
-
-vRatio <- merge(variance_ratio(Carapa, time.var = "time",
-                           species.var = "taxa",
-                           abundance.var = "abundance",
-                           bootnumber=1, 
-                           average.replicates = F), stab)
-vRatio
-
-
-vr.graph <-ggplot(vRatio, aes(x=VR, y=stability)) + 
-  geom_point(size=3) +
-  theme_bw() +   
-  theme(text= element_text(size = 14))
-
-vr.graph
-
-
-
+data("knz_001d")
+head(collins08)
+head(knz_001d)
 
 
 # Synchrony ---------------------------------------------------------------
 # Calculate synchrony via gross, merge with stab
 
 ## Calculate community stability
-stab <- community_stability(Carapa, 
+stab <- community_stability(df = Carapa, 
                             time.var = "time",
                             abundance.var = "abundance",
-                            replicate.var=NA)
+                            replicate.var= NA)
 stab
 
 # Calculate synchrony via loreau, merge with stab
-synch_loreau<-merge(synchrony(Carapa, 
+synch_loreau <- synchrony(df= Carapa, 
                               time.var = "time",
                               species.var = "taxa",
                               abundance.var = "abundance",
-                              replicate.var =NA),stab)
+                              replicate.var =NA,
+                              metric="Loreau")
 synch_loreau
 
 
 # Calculate synchrony via gross, merge with stab
-synch_gross<-merge(synchrony(Carapa, 
+synch_gross<-synchrony(df= Carapa, 
                              time.var = "time",
                              species.var = "taxa",
                              abundance.var = "abundance",
-                             replicate=NA,
-                             metric="Gross"), 
-                   stab)
+                             replicate.var =NA,
+                             metric="Gross")
 
 synch_gross
 
-loreau.graph <-ggplot(synch_loreau, aes(x=synchrony, y=stability)) + 
-  geom_point(size=3) + 
-  theme_bw() +   
-  theme(text= element_text(size = 14))
-loreau.graph
 
-
-gross.graph <-ggplot(synch_gross, aes(x=synchrony, y=stability)) + 
-  geom_point(size=3) + 
-  theme_bw() +   
-  theme(text= element_text(size = 14))
-gross.graph
+# Calculate variance ratio, merge with stab
+vr <- variance_ratio(df= Carapa,
+                     time.var = "time",
+                           species.var = "taxa",
+                           abundance.var = "abundance",
+                           replicate.var =NA,
+                           bootnumber=1, 
+                           average.replicates = F)
+vr
