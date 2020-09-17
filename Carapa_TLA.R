@@ -177,3 +177,27 @@ vr <- variance_ratio(df= Carapa,
                            bootnumber=1, 
                            average.replicates = F)
 vr
+
+
+# New functions -----------------------------------------------------------
+
+community_structure(df= Carapa,
+  time.var = "time",
+  abundance.var= "abundance",
+  replicate.var = NULL,
+  metric = "SimpsonEvenness") #"SimpsonEvenness": Calculates Simpson's evenness
+
+#Calculates changes in species richness, evenness, species' ranks, gains, 
+# and losses for each replicate
+
+RAC_change(df = Carapa,
+           species.var = "taxa",
+           abundance.var = "abundance",
+           time.var = "time")
+
+# For each species in a replicate, calculates changes in abundance
+abundance_change(df = Carapa,
+                 species.var = "taxa",
+                 abundance.var = "abundance",
+                 time.var = "time")
+
