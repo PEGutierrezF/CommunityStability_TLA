@@ -120,11 +120,16 @@ rateChange <- rate_change_interval(Carapa,
                                  abundance.var= "abundance")
 rateChange  
 
-# Create the graph
+model <- lm(rateChange$distance~rateChange$interval)
+summary(model)
+
+model# Create the graph
 rate.graph<-ggplot(rateChange, aes(interval, distance)) + 
   geom_point()+ 
   stat_smooth(method = "lm", se = F, size = 1) +
   theme_bw() 
+
+
 
 rate.graph 
 
