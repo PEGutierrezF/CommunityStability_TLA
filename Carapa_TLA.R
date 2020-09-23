@@ -79,8 +79,9 @@ turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metr
 
 turn.graphCarapa 
 
-
+###########################################################################
 # Run the rank shift code -------------------------------------------------
+###########################################################################
 
 rankshift <- rank_shift(df=Carapa, 
                         time.var = "time", 
@@ -131,11 +132,6 @@ rate.graph
 ###########################################################################
 # Calculate community stability -------------------------------------------
 ##########################################################################
-
-data("knz_001d")
-head(collins08)
-head(knz_001d)
-
 
 # Synchrony ---------------------------------------------------------------
 # Calculate synchrony via gross, merge with stab
