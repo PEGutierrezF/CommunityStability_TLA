@@ -104,8 +104,9 @@ rankshift.graph <- ggplot(rankshift, aes(samp_event, MRS)) +
   theme_bw() 
 rankshift.graph
 
-
+###########################################################################
 # Rate change code --------------------------------------------------------
+###########################################################################
 
 rateChanges <- rate_change(Carapa,   
                                    time.var= "time",    
