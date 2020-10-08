@@ -89,10 +89,12 @@ turn.graphSaltito <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=me
 
 turn.graphSaltito 
 
-T1 <- turn.graphCarapa / turn.graphSaltito
+T1 <- turn.graphCarapa / turn.graphSaltito + plot_annotation(tag_levels = 'A')
 T1 + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
 
+###########################################################################
 # Run the rank shift code -------------------------------------------------
+###########################################################################
 
 rankshift <- rank_shift(df=Saltito, 
                         time.var = "time", 
@@ -118,26 +120,37 @@ rankshift.graph
 # Rate change code --------------------------------------------------------
 
 
-rateChanges <- rate_change(Saltito,   
+rateChangesSaltito <- rate_change(Saltito,   
                                    time.var= "time",    
                                    species.var= "taxa",  
                                    abundance.var= "abundance")
-rateChanges
+rateChangesSaltito
 
 
-rateChange <- rate_change_interval(Saltito,   
+rateChSaltito <- rate_change_interval(Saltito,   
                                  time.var= "time",    
                                  species.var= "taxa",  
                                  abundance.var= "abundance")
-rateChange  
+rateChSaltito  
 
 # Create the graph
-rate.graph<-ggplot(rateChange, aes(interval, distance)) + 
-  geom_point()+ 
+rate.Saltito<-ggplot(rateChSaltito, aes(interval, distance)) + 
+  labs(y="", x = "Intervals") +
+  geom_point(shape=16, fill="gray10", color="gray10", size=1.5)+ 
   stat_smooth(method = "lm", se = F, size = 1) +
-  theme_bw() 
+  theme_bw() + 
+  ylim(0, 30000) +
+  theme(axis.text.y = element_text(colour = "black", size = rel(1))) + #axis size 
+  theme(axis.text.x = element_text(colour = "black", size = rel(1))) + # axis and ticks 
+  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
+  theme(axis.title.x = element_text(size = rel(1.25), angle = 0)) + # axis title
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
 
-rate.graph 
+rate.Saltito
+
+RC <- rate.Carapa + rate.Saltito + plot_annotation(tag_levels = 'A')
+RC
+RC + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
 
 
 # Calculate community stability -------------------------------------------
