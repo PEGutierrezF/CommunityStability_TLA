@@ -91,7 +91,8 @@ turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metr
   geom_line(size = 2) +  
   guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
   theme_bw() + 
-  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
+  theme(axis.text.y = element_text(colour = "black", size = rel(1))) + #axis size 
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) + # axis and ticks 
   theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
   theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
