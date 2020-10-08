@@ -88,10 +88,11 @@ allturnoverCarapa
 #Create the graph
 turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metric)) + 
   labs(y="Turnover", x = "", colour = "metric") +
-  geom_line(size = 2) +  
+  geom_line(size = 1) +  
   guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
+  ylim(0, 1) +
   theme_bw() + 
-  theme(axis.text.y = element_text(colour = "black", size = rel(1))) + #axis size 
+  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
   theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) + # axis and ticks 
   theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
   theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title

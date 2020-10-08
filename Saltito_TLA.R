@@ -73,9 +73,9 @@ allturnoverSaltito
 #Create the graph
 turn.graphSaltito <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=metric)) + 
   labs(y="Turnover", x = "Time (consecutive month)", colour = "metric") +
-  geom_line(size = 2) +  
+  geom_line(size = 1) +  
   guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
-  ylim(0, 0.8) +
+  ylim(0, 1) +
   theme_bw() + 
   theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
   theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
@@ -90,6 +90,7 @@ turn.graphSaltito <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=me
 turn.graphSaltito 
 
 T1 <- turn.graphCarapa / turn.graphSaltito + plot_annotation(tag_levels = 'A')
+T1
 T1 + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
 
 ###########################################################################
