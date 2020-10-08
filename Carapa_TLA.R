@@ -9,14 +9,13 @@
 #--------------------------------------------
 #
 
-
-
 library(ggplot2)
 library(grid)
 library(gridExtra)
 library(codyn)
 library(dplyr)
 library(tidyr)
+library(tsvr)
 
 
 Carapa<-read.csv("codyCarapa.csv") # read the accompanying csv file
@@ -25,13 +24,28 @@ head(Carapa)
 
 
 # Turnover code -----------------------------------------------------------
+# Codyn v2
+tableRAC <- RAC_change(df = Carapa, time.var = "time",  
+           species.var = "taxa", abundance.var = "abundance",
+            replicate.var = NULL,reference.time = NULL)
+head(tableRAC)
+
+ggplot(tableRAC, aes(x=time2, y=richness_change )) +
+  geom_line()
 
 
+RAC_difference(df = Carapa, time.var = "time", 
+                species.var = "taxa", abundance.var = "abundance", 
+                replicate.var= NULL, treatment.var = NULL, 
+                pool = FALSE, block.var = NULL, 
+                reference.treatment = NULL)
+
+# Codyn v1
 turnover <- turnover(df = Carapa,  
                          time.var = "time",  
                          species.var = "taxa", 
                          abundance.var = "abundance",
-                     replicate.var = NA)
+                     replicate.var = NA, metric = "total")
 
 turnover
 
@@ -73,11 +87,23 @@ allturnoverCarapa
 
 #Create the graph
 turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metric)) + 
-  geom_line(size = 1) +  
+  labs(y="Turnover", x = "Time", colour = "metric") +
+  geom_line(size = 2) +  
+  guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
   theme_bw() + 
-  theme(legend.position = "none")
+  theme(axis.text = element_text(colour = "black", size = rel(1.25))) + #axis size 
+  theme(axis.title.y = element_text(size = rel(1.5), angle = 90)) +  # axis title
+  theme(axis.title.x = element_text(size = rel(1.5), angle = 0))+ # axis title
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
+  theme(legend.key = element_rect(fill = "white", colour = "black")) +
+  theme(legend.text = element_text(size = 12, colour = "black")) +
+  scale_color_manual(name="Metrics",labels = c("Appearance","Disappearance","Total"),
+values = c("appearance"="#b8e186", "disappearance"="#fdb863", "total" ="#0571b0"))
+  
 
 turn.graphCarapa 
+
+
 
 ###########################################################################
 # Run the rank shift code -------------------------------------------------
