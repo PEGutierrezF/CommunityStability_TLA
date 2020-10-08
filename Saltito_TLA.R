@@ -25,7 +25,23 @@ head(Saltito)
 
 
 # Turnover code -----------------------------------------------------------
+# Codyn v2
+tableRAC_saltito <- RAC_change(df = Saltito, time.var = "time",  
+                              species.var = "taxa", abundance.var = "abundance",
+                              replicate.var = NULL,reference.time = NULL)
+head(tableRAC_saltito)
 
+ggplot(tableRAC_saltito, aes(x=time2, y=richness_change )) +
+  geom_line()
+
+
+RAC_difference(df = Carapa, time.var = "time", 
+               species.var = "taxa", abundance.var = "abundance", 
+               replicate.var= NULL, treatment.var = NULL, 
+               pool = FALSE, block.var = NULL, 
+               reference.treatment = NULL)
+
+# Codyn 1
 
 turnoverSaltito <- turnover(df = Saltito,  
                          time.var = "time",  
@@ -97,24 +113,37 @@ T1 + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
 # Run the rank shift code -------------------------------------------------
 ###########################################################################
 
-rankshift <- rank_shift(df=Saltito, 
+rankshift_saltito <- rank_shift(df=Saltito, 
                         time.var = "time", 
                         species.var = "taxa",
                         abundance.var = "abundance")
 
-rankshift
+rankshift_saltito
 
 #Select the final time point from the returned time.var_pair
-rankshift$samp_event <- seq(1, 122)
-rankshift
+rankshift_saltito$samp_event <- seq(1, 122)
+rankshift_saltito
 
 # Create the graph
-rankshift.graph <- ggplot(rankshift, aes(samp_event, MRS)) + 
+rankshift_saltito_plot <- ggplot(rankshift_saltito, aes(samp_event, MRS)) + 
+  labs(y="Mean rank shift", x = "Sampling event", colour = "") +
   geom_line(size = 1) + 
-  theme_bw() 
+  ylim(0, 4) +
+  theme_bw() + 
+  theme(axis.text.y = element_text(colour = "black", size = rel(1))) + # axis size 
+  theme(axis.text.x = element_text(colour = "black", size = rel(1))) + # axis and ticks 
+  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
+  theme(axis.title.x = element_text(size = rel(1.25), angle = 0)) + # axis title
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+rankshift_saltito_plot
 
 
-rankshift.graph
+rs <- rankshift_carapa_plot / rankshift_saltito_plot + plot_annotation(tag_levels = 'A')
+rs
+
+rs + ggsave("Figure 3.JPEG",width=6, height=4,dpi=600)
+
 
 
 
@@ -151,18 +180,37 @@ rate.Saltito
 
 RC <- rate.Carapa + rate.Saltito + plot_annotation(tag_levels = 'A')
 RC
-RC + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
+RC + ggsave("Figure 2.JPEG",width=6, height=4,dpi=600)
 
 
 # Calculate community stability -------------------------------------------
 
 
 
-stab <- community_stability(Carapa, 
+stab <- community_stability(Saltito, 
                             time.var = "time",
                             abundance.var = "abundance")
 stab
 
+# Calculate synchrony via loreau, merge with stab
+synch_loreau_saltito <- synchrony(df= Saltito, 
+                          time.var = "time",
+                          species.var = "taxa",
+                          abundance.var = "abundance",
+                          replicate.var =NA,
+                          metric="Loreau")
+synch_loreau_saltito
+
+
+# Calculate synchrony via gross, merge with stab
+synch_gross_saltito <-synchrony(df= Saltito, 
+                       time.var = "time",
+                       species.var = "taxa",
+                       abundance.var = "abundance",
+                       replicate.var =NA,
+                       metric="Gross")
+
+synch_gross_saltito
 
 ####### Calculate variance ratio, merge with stab ##########
 
