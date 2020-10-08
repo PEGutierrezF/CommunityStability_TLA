@@ -96,11 +96,10 @@ turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metr
   theme(axis.title.x = element_text(size = rel(1.5), angle = 0))+ # axis title
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
   theme(legend.key = element_rect(fill = "white", colour = "black")) +
-  theme(legend.text = element_text(size = 12, colour = "black")) +
+        theme(legend.title = element_text(size=14, color = "black"),legend.text = element_text(size=14))+
   scale_color_manual(name="Metrics",labels = c("Appearance","Disappearance","Total"),
-values = c("appearance"="#b8e186", "disappearance"="#fdb863", "total" ="#0571b0"))
+        values = c("appearance"="#b8e186", "disappearance"="#fdb863", "total" ="#0571b0"))
   
-
 turn.graphCarapa 
 
 
