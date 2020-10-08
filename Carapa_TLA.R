@@ -87,17 +87,18 @@ allturnoverCarapa
 
 #Create the graph
 turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metric)) + 
-  labs(y="Turnover", x = "Time", colour = "metric") +
+  labs(y="Turnover", x = "", colour = "metric") +
   geom_line(size = 2) +  
   guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
   theme_bw() + 
-  theme(axis.text = element_text(colour = "black", size = rel(1.25))) + #axis size 
-  theme(axis.title.y = element_text(size = rel(1.5), angle = 90)) +  # axis title
-  theme(axis.title.x = element_text(size = rel(1.5), angle = 0))+ # axis title
+  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
+  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
+  theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  theme(legend.position="bottom", legend.box = "horizontal")+
-  theme(legend.key = element_rect(fill = "white", colour = "white")) +
-        theme(legend.title = element_text(size=18, color = "black"),legend.text = element_text(size=18))+
+  theme(legend.position="bottom", legend.box = "horizontal") +
+  theme(legend.position = "none") +
+#  theme(legend.key = element_rect(fill = "white", colour = "white")) +
+ #       theme(legend.title = element_text(size=18, color = "black"),legend.text = element_text(size=18))+
   scale_color_manual(name="Metrics",labels = c("Appearance","Disappearance","Total"),
         values = c("appearance"="#999999", "disappearance"="#E69F00", "total" ="#56B4E9"))
   
