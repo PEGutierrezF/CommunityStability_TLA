@@ -31,8 +31,32 @@ tableRAC_saltito <- RAC_change(df = Saltito, time.var = "time",
                               replicate.var = NULL,reference.time = NULL)
 head(tableRAC_saltito)
 
-ggplot(tableRAC_saltito, aes(x=time2, y=richness_change )) +
-  geom_line()
+
+min(tableRAC_saltito[,3])
+max(tableRAC_saltito[,3])
+mean(tableRAC_saltito[,3])
+
+
+# Create the graph
+richnesschanges_saltito_plot <- ggplot(tableRAC_saltito, aes(time2, richness_change)) + 
+  labs(y="Species richness", x = "Time", colour = "") +
+  geom_line(size = 1) + 
+  ylim(-1,1) +
+  theme_bw() + 
+  theme(axis.text.y = element_text(colour = "black", size = rel(1))) + # axis size 
+  theme(axis.text.x = element_text(colour = "black", size = rel(1))) + # axis and ticks 
+  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
+  theme(axis.title.x = element_text(size = rel(1.25), angle = 0)) + # axis title
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+richnesschanges_saltito_plot
+
+
+speciesrichness <- richnesschanges_carapa_plot / richnesschanges_saltito_plot + plot_annotation(tag_levels = 'A')
+speciesrichness
+
+speciesrichness + ggsave("Figure 4.JPEG",width=6, height=4,dpi=600)
+
 
 
 RAC_difference(df = Carapa, time.var = "time", 

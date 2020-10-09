@@ -30,8 +30,25 @@ tableRAC_carapa <- RAC_change(df = Carapa, time.var = "time",
             replicate.var = NULL,reference.time = NULL)
 head(tableRAC_carapa)
 
-ggplot(tableRAC_carapa, aes(x=time2, y=richness_change )) +
-  geom_line()
+min(tableRAC_carapa[,3])
+max(tableRAC_carapa[,3])
+mean(tableRAC_carapa[,3])
+
+
+# Create the graph
+richnesschanges_carapa_plot <- ggplot(tableRAC_carapa, aes(time2, richness_change)) + 
+  labs(y="Species richness", x = "", colour = "") +
+  geom_line(size = 1) + 
+  ylim(-1, 1) +
+  theme_bw() + 
+  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) + # axis and ticks 
+  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
+  theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+
+richnesschanges_carapa_plot
+
 
 
 RAC_difference(df = Carapa, time.var = "time", 
