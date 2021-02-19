@@ -11,21 +11,15 @@
 
 
 
-library(ggplot2)
-library(grid)
-library(gridExtra)
-library(codyn)
-library(dplyr)
-library(tidyr)
-library(patchwork)
-
 collins08
 Saltito<-read.csv("codySaltito.csv") # read the accompanying csv file
 head(Saltito)
 
 
-# Turnover code -----------------------------------------------------------
-# Codyn v2
+###########################################################################
+# Codyn V2 ----------------------------------------------------------------
+###########################################################################
+
 tableRAC_saltito <- RAC_change(df = Saltito, time.var = "time",  
                               species.var = "taxa", abundance.var = "abundance",
                               replicate.var = NULL,reference.time = NULL)
@@ -65,7 +59,9 @@ RAC_difference(df = Carapa, time.var = "time",
                pool = FALSE, block.var = NULL, 
                reference.treatment = NULL)
 
-# Codyn 1
+###########################################################################
+# Codyn V1 ----------------------------------------------------------------
+###########################################################################
 
 turnoverSaltito <- turnover(df = Saltito,  
                          time.var = "time",  
@@ -170,9 +166,9 @@ rs + ggsave("Figure 3.JPEG",width=6, height=4,dpi=600)
 
 
 
-
+###########################################################################
 # Rate change code --------------------------------------------------------
-
+###########################################################################
 
 rateChangesSaltito <- rate_change(Saltito,   
                                    time.var= "time",    

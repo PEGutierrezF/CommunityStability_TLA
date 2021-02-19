@@ -23,8 +23,10 @@ head(Carapa)
 
 
 
-# Turnover code -----------------------------------------------------------
-# Codyn v2
+###########################################################################
+# Codyn V2 ----------------------------------------------------------------
+###########################################################################
+
 tableRAC_carapa <- RAC_change(df = Carapa, time.var = "time",  
            species.var = "taxa", abundance.var = "abundance",
             replicate.var = NULL,reference.time = NULL)
@@ -57,7 +59,10 @@ RAC_difference(df = Carapa, time.var = "time",
                 pool = FALSE, block.var = NULL, 
                 reference.treatment = NULL)
 
-# Codyn v1
+###########################################################################
+# Codyn V1 ----------------------------------------------------------------
+###########################################################################
+
 turnover <- turnover(df = Carapa,  
                          time.var = "time",  
                          species.var = "taxa", 
