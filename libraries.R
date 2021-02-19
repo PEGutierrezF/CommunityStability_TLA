@@ -1,6 +1,9 @@
 
 
-install.packages("tsvr")
+install.packages("ggpubr")
 libraries <- c("grid", "ggplot2", "plyr","dplyr", 'patchwork',
-               'gridExtra', 'codyn','tsvr')
+               'ggpubr', 'gridExtra', 'codyn','tsvr')
 lapply(libraries, require, character.only = TRUE)
+
+
+find_funs("ggarrange")

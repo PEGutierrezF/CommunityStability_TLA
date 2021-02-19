@@ -100,7 +100,7 @@ allturnoverCarapa
 
 #Create the graph
 turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metric)) + 
-  labs(y="Turnover", x = "", colour = "metric") +
+  labs(y="", x = "", colour = "metric") +
   geom_line(size = 2) +  
   guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
   ylim(0, 1) +
