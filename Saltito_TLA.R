@@ -134,7 +134,7 @@ T1. <- ggarrange(turn.graphCarapa , turn.graphSaltito, align = "v",
                       color = "black"), ncol = 1, nrow = 2)
 
 
-T1.. <-annotate_figure(T1., left = text_grob("Assemblages turnover", rot = 90,
+T1.. <-annotate_figure(T1., left = text_grob("Turnover", rot = 90,
                   color = "Black", face = "bold", size = 14))
 
 T1..
