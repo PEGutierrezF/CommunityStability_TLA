@@ -108,25 +108,28 @@ allturnoverSaltito
 
 #Create the graph
 turn.graphSaltito <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=metric)) + 
-  labs(y="", x = "Time (consecutive month)", colour = "metric") +
-  geom_line(size = 2) +  
-  guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
-  ylim(0, 1) +
-  theme_bw() + 
-  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
-  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
-  theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  theme(legend.position="bottom", legend.box = "horizontal")+
-  theme(legend.key = element_rect(fill = "white", colour = "white")) +
-  theme(legend.title = element_text(size=12, color = "black"),legend.text = element_text(size=12))+
+  geom_line(size = 1.2) +
   scale_color_manual(name="Metrics",labels = c("Appearance","Disappearance","Total"),
-                     values = c("appearance"="#34e383", "disappearance"="#e3347a", "total" ="#34a0e3"))
+                     values = c("appearance"="#34e383", "disappearance"="#e3347a", "total" ="#34a0e3")) +
+  guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
+  
+  labs(y="", x = "Time (consecutive month)", colour = "metric") +
+  theme(axis.title.x = element_text(size = 12, angle = 0)) + # axis x
+  theme(axis.title.y = element_text(size = 12, angle = 90)) + # axis y
+  theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
+  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
+  
+  
+  ylim(0, 1) +
+  theme(legend.position = "none") +
+  
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.5)) 
 
 turn.graphSaltito 
 
-
-T1. <- ggarrange(turn.graphCarapa , turn.graphSaltito , align = "v",
+T1. <- ggarrange(turn.graphCarapa , turn.graphSaltito, align = "v",
                         labels = c("A", "B"),font.label = list(size = 13, face= "plain", 
                       color = "black"), ncol = 1, nrow = 2)
 
@@ -134,6 +137,7 @@ T1. <- ggarrange(turn.graphCarapa , turn.graphSaltito , align = "v",
 T1.. <-annotate_figure(T1., left = text_grob("Turnover", rot = 90,
                   color = "Black", face = "bold", size = 14))
 
+T1..
 
 T1.. + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
 

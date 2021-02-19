@@ -100,23 +100,28 @@ allturnoverCarapa
 
 #Create the graph
 turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metric)) + 
-  labs(y="", x = "", colour = "metric") +
-  geom_line(size = 2) +  
+  geom_line(size = 1.2) +
+    scale_color_manual(name="Metrics",labels = c("Appearance","Disappearance","Total"),
+        values = c("appearance"="#34e383", "disappearance"="#e3347a", "total" ="#34a0e3")) +
   guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
-  ylim(0, 1) +
-  theme_bw() + 
-  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
-  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) + # axis and ticks 
-  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
-  theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) +
-  theme(legend.position="bottom", legend.box = "horizontal") +
-  theme(legend.position = "none") +
-#  theme(legend.key = element_rect(fill = "white", colour = "white")) +
- #       theme(legend.title = element_text(size=18, color = "black"),legend.text = element_text(size=18))+
-  scale_color_manual(name="Metrics",labels = c("Appearance","Disappearance","Total"),
-        values = c("appearance"="#34e383", "disappearance"="#e3347a", "total" ="#34a0e3"))
   
+  labs(y="", x = "", colour = "metric") +
+  theme(axis.title.x = element_text(size = 12, angle = 0)) + # axis x
+  theme(axis.title.y = element_text(size = 12, angle = 90)) + # axis y
+  theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
+  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
+    
+  
+  ylim(0, 1) +
+  theme(legend.title = element_blank()) +
+  theme(legend.key=element_blank()) + 
+  theme(legend.position = c(0.9, 0.83)) +
+  theme(legend.text = element_text(color = "black", size = 10))+
+  
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+        panel.background = element_blank(), axis.line = element_line(colour = "black")) +
+  theme(panel.border = element_rect(colour = "black", fill=NA, size=0.5)) 
+
 turn.graphCarapa 
 
 
