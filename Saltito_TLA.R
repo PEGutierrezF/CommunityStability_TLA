@@ -108,7 +108,7 @@ allturnoverSaltito
 
 #Create the graph
 turn.graphSaltito <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=metric)) + 
-  labs(y="Turnover", x = "Time (consecutive month)", colour = "metric") +
+  labs(y="", x = "Time (consecutive month)", colour = "metric") +
   geom_line(size = 2) +  
   guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
   ylim(0, 1) +
@@ -125,9 +125,17 @@ turn.graphSaltito <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=me
 
 turn.graphSaltito 
 
-T1 <- turn.graphCarapa / turn.graphSaltito + plot_annotation(tag_levels = 'A')
-T1
-T1 + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
+
+T1. <- ggarrange(turn.graphCarapa , turn.graphSaltito , align = "v",
+                        labels = c("A", "B"),font.label = list(size = 13, face= "plain", 
+                      color = "black"), ncol = 1, nrow = 2)
+
+
+T1.. <-annotate_figure(T1., left = text_grob("Turnover", rot = 90,
+                  color = "Black", face = "bold", size = 14))
+
+
+T1.. + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
 
 ###########################################################################
 # Run the rank shift code -------------------------------------------------

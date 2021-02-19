@@ -6,4 +6,6 @@ libraries <- c("grid", "ggplot2", "plyr","dplyr", 'patchwork',
 lapply(libraries, require, character.only = TRUE)
 
 
-find_funs("ggarrange")
+install.packages("sos")
+library(sos)
+findFn("ggarrange")
