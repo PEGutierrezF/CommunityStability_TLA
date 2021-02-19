@@ -109,7 +109,7 @@ allturnoverSaltito
 #Create the graph
 turn.graphSaltito <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=metric)) + 
   labs(y="Turnover", x = "Time (consecutive month)", colour = "metric") +
-  geom_line(size = 1) +  
+  geom_line(size = 2) +  
   guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
   ylim(0, 1) +
   theme_bw() + 
@@ -121,7 +121,7 @@ turn.graphSaltito <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=me
   theme(legend.key = element_rect(fill = "white", colour = "white")) +
   theme(legend.title = element_text(size=12, color = "black"),legend.text = element_text(size=12))+
   scale_color_manual(name="Metrics",labels = c("Appearance","Disappearance","Total"),
-                     values = c("appearance"="#999999", "disappearance"="#E69F00", "total" ="#56B4E9"))
+                     values = c("appearance"="#34e383", "disappearance"="#e3347a", "total" ="#34a0e3"))
 
 turn.graphSaltito 
 
