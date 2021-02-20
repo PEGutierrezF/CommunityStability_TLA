@@ -116,7 +116,7 @@ turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metr
   theme(legend.title = element_blank()) +
   theme(legend.key=element_blank()) + 
   theme(legend.position = c(0.9, 0.83)) +
-  theme(legend.text = element_text(color = "black", size = 8))+
+  theme(legend.text = element_text(color = "black", size = 12))+
   theme(legend.background = element_rect(fill = "transparent"))+  # get rid of legend bg
 #  theme(legend.box.background = element_rect(fill = "transparent")) +
   
