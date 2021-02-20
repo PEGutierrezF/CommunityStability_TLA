@@ -131,11 +131,11 @@ turn.graphSaltito
 
 T1. <- ggarrange(turn.graphCarapa , turn.graphSaltito, align = "v",
                         labels = c("A", "B"),font.label = list(size = 13, face= "plain", 
-                      color = "black"), ncol = 1, nrow = 2)
+                      color = "black"), ncol = 1, nrow = 2, common.legend = TRUE)
 
 
 T1.. <-annotate_figure(T1., left = text_grob("Turnover", rot = 90,
-                  color = "Black", face = "bold", size = 14))
+                  color = "Black", face = "plain", size = 12))
 
 T1..
 

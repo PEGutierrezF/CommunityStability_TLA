@@ -108,7 +108,7 @@ turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metr
   labs(y="", x = "", colour = "metric") +
   theme(axis.title.x = element_text(size = 12, angle = 0)) + # axis x
   theme(axis.title.y = element_text(size = 12, angle = 90)) + # axis y
-  theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
+  theme(axis.text.x=element_blank()) + #subaxis x
   theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
     
   
@@ -118,7 +118,7 @@ turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metr
   theme(legend.position = c(0.9, 0.83)) +
   theme(legend.text = element_text(color = "black", size = 8))+
   theme(legend.background = element_rect(fill = "transparent"))+  # get rid of legend bg
-  theme(legend.box.background = element_rect(fill = "transparent")) +
+#  theme(legend.box.background = element_rect(fill = "transparent")) +
   
   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) +
