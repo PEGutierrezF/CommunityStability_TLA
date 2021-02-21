@@ -60,10 +60,14 @@ turnover <- turnover(df = Carapa,
                          abundance.var = "abundance",
                      replicate.var = NA, metric = "total")
 
-turnover
+head(turnover)
 
 min(turnover[,1])
+turnover[which.min(turnover$total),]
+
 max(turnover[,1])
+turnover[which.max(turnover$total),]
+
 mean(turnover[,1])
 
 
