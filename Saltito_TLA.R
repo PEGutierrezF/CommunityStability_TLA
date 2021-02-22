@@ -71,7 +71,11 @@ turnoverSaltito <- turnover(df = Saltito,
 
 turnoverSaltito
 min(turnoverSaltito[,1])
+turnoverSaltito[which.min(turnoverSaltito$total),]
+
 max(turnoverSaltito[,1])
+turnoverSaltito[which.max(turnoverSaltito$total),]
+
 mean(turnoverSaltito[,1])
 
 
