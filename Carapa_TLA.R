@@ -3,7 +3,7 @@
 # https://mran.microsoft.com/snapshot/2016-01-12/web/packages/codyn/vignettes/Temporal_Diversity_Indices.html
 # https://cran.r-project.org/web/packages/codyn/vignettes/codyn_overview.html
 
-# section lable -----------------------------
+# section table -----------------------------
 # 28 Mar 2020
 #PEGF
 #--------------------------------------------
