@@ -199,6 +199,9 @@ rateChSaltito <- rate_change_interval(Saltito,
                                  abundance.var= "abundance")
 rateChSaltito  
 
+modelS <- lm(rateChSaltito$distance~rateChSaltito$interval)
+summary(modelS)
+
 # Create the graph
 rate.Saltito<-ggplot(rateChSaltito, aes(interval, distance)) + 
   labs(y="", x = "Intervals") +
