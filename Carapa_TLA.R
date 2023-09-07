@@ -1,13 +1,24 @@
 
 
+
+
+# ---------------------------------------------
+# Community Stability Carapa (1997-2016)
+# 07 Sep 2023
+# Pablo E. Gutiérrez-Fonseca
+# pabloe.gutierrezfonseca@gmail.com
+# ---------------------------------------------
+#  
+
+
+# cleans global environment
+rm(list = ls())
+
+
+
+
 # https://mran.microsoft.com/snapshot/2016-01-12/web/packages/codyn/vignettes/Temporal_Diversity_Indices.html
 # https://cran.r-project.org/web/packages/codyn/vignettes/codyn_overview.html
-
-# section table -----------------------------
-# 28 Mar 2020
-#PEGF
-#--------------------------------------------
-#
 
 Carapa<-read.csv("codyCarapa.csv") # read the accompanying csv file
 head(Carapa)
