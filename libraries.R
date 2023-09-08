@@ -18,7 +18,7 @@ rm(list = ls())
 
 install.packages('codyn')
 libraries <- c("grid", "ggplot2", "plyr","dplyr", 'patchwork',
-               'ggpubr', 'gridExtra', 'codyn','tsvr')
+               'ggpubr', 'gridExtra', 'codyn','tsvr','readxl')
 lapply(libraries, require, character.only = TRUE)
 
 
