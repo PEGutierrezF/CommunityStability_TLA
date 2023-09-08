@@ -118,28 +118,39 @@ head(Feb97)
 # Assuming you have data frames Feb97 and Jan97
 merged_df <- bind_rows(Feb97, Jan97)
 
-
-# To view the first few rows of the merged data frame:
-head(merged_df)
-# Attempt to convert the "abundance" column to numeric
-merged_df$abundance <- as.numeric(merged_df$abundance)
-class(merged_df$abundance)
-
-test <- RAC_change(df = merged_df, time.var = "year",  
-                              species.var = "taxa", abundance.var = "abundance",
-                              replicate.var = 'rep', reference.time = NULL)
-head(test)
-
-richnesschanges_carapa_plot <- ggplot(test, aes(year2, richness_change)) + 
-  labs(y="Species richness", x = "", colour = "") +
-  geom_line(size = 1) + 
-  ylim(-1, 1) +
-  theme_bw() + 
-  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
-  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) + # axis and ticks 
-  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
-  theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+laselva <- turnover(df = merged_df, 
+                         time.var = "year", 
+                         species.var = "taxa", 
+                         abundance.var = "abundance", 
+                         replicate.var = "rep")
+ggplot(laselva, aes(x=year, y=total, color=rep)) + 
+  geom_line(size = 2) + theme_bw()
 
 
-write.csv(merged_df, 'carapaa.csv')
+
+laselva_agg <- turnover(df = merged_df, 
+                         time.var = "year", 
+                         species.var = "taxa", 
+                         abundance.var = "abundance", 
+                         replicate.var = "rep")
+
+laselva_app <- turnover(df = merged_df, 
+                           time.var = "year",
+                           species.var = "taxa",
+                           abundance.var = "abundance",
+                           replicate.var = "rep",
+                           metric = "appearance")
+
+laselva_appearance <- turnover(df = merged_df, 
+                               time.var = "year",
+                               species.var = "taxa",
+                               abundance.var = "abundance",
+                               replicate.var = "rep",
+                               metric = "disappearance")
+
+
+ggplot(laselva_app, aes(x=year, y=turnover, color=rep)) + 
+geom_line(size = 2) + theme_bw() + facet_wrap(~metric)
+
+https://rdrr.io/cran/codyn/f/vignettes/Temporal_Diversity_Indices.Rmd
+
