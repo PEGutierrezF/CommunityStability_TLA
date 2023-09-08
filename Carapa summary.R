@@ -77,9 +77,6 @@ Jan97 <- pivot_longer(Jan97,
                              names_to = "rep",
                              cols = starts_with("C"),
                              values_to = "abundance")
-Jan97 <- Jan97 %>% 
-  filter(abundance!= "0")
-
 Jan97 <- Jan97 %>%
   mutate(rep = case_when(
     rep == "C1_abun" ~ "C1_Jan97",
@@ -88,6 +85,8 @@ Jan97 <- Jan97 %>%
     TRUE ~ rep  # Keep other values as they are
   ))
 
+Jan97 <- Jan97 %>% filter(abundance!= "0")
+Jan97$abundance <- as.numeric(Jan97$abundance)
 head(Jan97)
 
 
@@ -109,9 +108,11 @@ Feb97 <- Feb97 %>%
   ))
 
 
-Feb97 <- Feb97 %>% 
-  filter(abundance!= "0")
+Feb97 <- Feb97 %>% filter(abundance!= "0")
+Feb97$abundance <- as.numeric(Feb97$abundance)
 head(Feb97)
+
+
 
 
 # Assuming you have data frames Feb97 and Jan97
