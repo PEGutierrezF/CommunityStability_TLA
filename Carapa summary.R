@@ -33,9 +33,33 @@ extracted_dataframes <- list()
 columns_to_extract <- c("taxa", "C1_abun", "C2_abun", "C3_abun")
 
 
+# Loop through each sheet and extract the specified columns
+for (sheet_name in sheet_names) {
+  # Read the sheet into a data frame
+  sheet <- read_excel(file_path, sheet = sheet_name)
+  
+  # Check if the specified columns exist in the sheet
+  if (all(columns_to_extract %in% colnames(sheet))) {
+    # Extract the specified columns if they exist
+    extracted_data <- sheet[, columns_to_extract, drop = FALSE]
+    
+    # Remove rows with all NAs or zeros (0s) in the specified columns
+    extracted_data <- extracted_data[!rowSums(is.na(extracted_data) | extracted_data == 0) == length(columns_to_extract), ]
+    
+    # Store the extracted data frame in the list
+    sheet_data[[sheet_name]] <- extracted_data
+  } else {
+    # If one or more columns don't exist, you can handle it as needed.
+    # For example, you can skip this sheet or add a placeholder data frame.
+    sheet_data[[sheet_name]] <- data.frame()
+  }
+  
+  # Print the column names in the current sheet
+  cat("Sheet Name:", sheet_name, "\n")
+  cat("Column Names:", colnames(sheet), "\n")
+}
 
-
-
+Nov97 <- sheet_data[["Nov97"]]
 
 
 
