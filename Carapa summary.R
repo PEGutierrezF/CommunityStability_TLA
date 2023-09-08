@@ -33,6 +33,13 @@ extracted_dataframes <- list()
 columns_to_extract <- c("taxa", "C1_abun", "C2_abun", "C3_abun")
 
 
+
+
+
+
+
+
+
 # Loop through each sheet and extract the specified columns
 for (sheet_name in sheet_names) {
   # Read the sheet into a data frame
@@ -49,9 +56,6 @@ for (sheet_name in sheet_names) {
     # Remove the last 7 rows from the extracted data
     extracted_data <- head(extracted_data, -rows_to_remove)
     
-    # Remove rows with all 0s or NAs
-    extracted_data <- extracted_data[rowSums(is.na(extracted_data) | extracted_data == 0) < ncol(extracted_data), ]
-    
     # Store the extracted data frame in the list
     sheet_data[[sheet_name]] <- extracted_data
   } else {
@@ -65,6 +69,6 @@ for (sheet_name in sheet_names) {
   cat("Column Names:", colnames(sheet), "\n")
 }
 
+Nov97 <- sheet_data[["Nov97"]]
 
-Jan98 <- sheet_data[["Jan98"]]
-head(Jan98)
+
