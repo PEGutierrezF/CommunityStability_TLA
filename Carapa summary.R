@@ -40,37 +40,6 @@ for (sheet_name in sheet_names) {
   
   # Check if the specified columns exist in the sheet
   if (all(columns_to_extract %in% colnames(sheet))) {
-    # Extract the specified columns if they exist
-    extracted_data <- sheet[, columns_to_extract, drop = FALSE]
-    
-    # Remove rows with all NAs or zeros (0s) in the specified columns
-    extracted_data <- extracted_data[!rowSums(is.na(extracted_data) | extracted_data == 0) == length(columns_to_extract), ]
-    
-    # Store the extracted data frame in the list
-    sheet_data[[sheet_name]] <- extracted_data
-  } else {
-    # If one or more columns don't exist, you can handle it as needed.
-    # For example, you can skip this sheet or add a placeholder data frame.
-    sheet_data[[sheet_name]] <- data.frame()
-  }
-  
-  # Print the column names in the current sheet
-  cat("Sheet Name:", sheet_name, "\n")
-  cat("Column Names:", colnames(sheet), "\n")
-}
-
-Nov97 <- sheet_data[["Nov97"]]
-
-
-
-
-# Loop through each sheet and extract the specified columns
-for (sheet_name in sheet_names) {
-  # Read the sheet into a data frame
-  sheet <- read_excel(file_path, sheet = sheet_name)
-  
-  # Check if the specified columns exist in the sheet
-  if (all(columns_to_extract %in% colnames(sheet))) {
     # Define the number of rows to remove from the end
     rows_to_remove <- 7
     
@@ -80,7 +49,14 @@ for (sheet_name in sheet_names) {
     # Remove the last 7 rows from the extracted data
     extracted_data <- head(extracted_data, -rows_to_remove)
     
-    # Store the extracted data frame in the list
+    # Exclude and remove rows with 3 values or NAs or 0s
+    extracted_data <- extracted_data %>%
+      filter(!rowSums(is.na(.)) >= 3, !rowSums(. == 0) >= 3)
+    
+    # Remove the first row from the extracted data
+    extracted_data <- extracted_data[-1, ]
+    
+    # Store the extracted and cleaned data frame in the list
     sheet_data[[sheet_name]] <- extracted_data
   } else {
     # If one or more columns don't exist, you can handle it as needed.
@@ -93,6 +69,67 @@ for (sheet_name in sheet_names) {
   cat("Column Names:", colnames(sheet), "\n")
 }
 
-Nov97 <- sheet_data[["Nov97"]]
 
+Jan97 <- sheet_data[["Jan97"]]
+# Add the "year" column with rows as 1997
+Jan97$year <- 1997
+Jan97 <- pivot_longer(Jan97,
+                             names_to = "rep",
+                             cols = starts_with("C"),
+                             values_to = "abundance")
+Jan97 <- Jan97 %>% 
+  filter(abundance!= "0")
+
+Jan97 <- Jan97 %>%
+  mutate(rep = case_when(
+    rep == "C1_abun" ~ "C1_Jan97",
+    rep == "C2_abun" ~ "C2_Jan97",
+    rep == "C3_abun" ~ "C3_Jan97",
+    TRUE ~ rep  # Keep other values as they are
+  ))
+
+head(Jan97)
+
+
+# -------------------------------------------------------------------------
+Feb97 <- sheet_data[["Feb97"]]
+# Add the "year" column with rows as 1997
+Feb97$year <- 1998
+Feb97 <- pivot_longer(Feb97,
+                      names_to = "rep",
+                      cols = starts_with("C"),
+                      values_to = "abundance")
+
+Feb97 <- Feb97 %>%
+  mutate(rep = case_when(
+    rep == "C1_abun" ~ "C1_Feb97",
+    rep == "C2_abun" ~ "C2_Feb97",
+    rep == "C3_abun" ~ "C3_Feb97",
+    TRUE ~ rep  # Keep other values as they are
+  ))
+
+
+Feb97 <- Feb97 %>% 
+  filter(abundance!= "0")
+head(Feb97)
+
+
+# Assuming you have data frames Feb97 and Jan97
+merged_df <- bind_rows(Feb97, Jan97)
+
+
+# To view the first few rows of the merged data frame:
+head(merged_df)
+# Attempt to convert the "abundance" column to numeric
+merged_df$abundance <- as.numeric(merged_df$abundance)
+class(merged_df$abundance)
+
+test <- RAC_change(df = merged_df, time.var = "year",  
+                              species.var = "taxa", abundance.var = "abundance",
+                              replicate.var = 'rep', reference.time = NULL)
+head(test)
+
+min(tableRAC_carapa[,3])
+max(tableRAC_carapa[,3])
+mean(tableRAC_carapa[,3])
 
