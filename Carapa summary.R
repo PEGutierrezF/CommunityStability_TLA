@@ -127,10 +127,7 @@ class(merged_df$abundance)
 
 test <- RAC_change(df = merged_df, time.var = "year",  
                               species.var = "taxa", abundance.var = "abundance",
-                              replicate.var = 'rep', reference.time = NULL)
+                              replicate.var = NULL, reference.time = NULL)
 head(test)
 
-min(tableRAC_carapa[,3])
-max(tableRAC_carapa[,3])
-mean(tableRAC_carapa[,3])
-
+write.csv(merged_df, 'carapaa.csv')
