@@ -79,9 +79,9 @@ Jan97 <- pivot_longer(Jan97,
                              values_to = "abundance")
 Jan97 <- Jan97 %>%
   mutate(rep = case_when(
-    rep == "C1_abun" ~ "C1_Jan97",
-    rep == "C2_abun" ~ "C2_Jan97",
-    rep == "C3_abun" ~ "C3_Jan97",
+    rep == "C1_abun" ~ "C1",
+    rep == "C2_abun" ~ "C2",
+    rep == "C3_abun" ~ "C3",
     TRUE ~ rep  # Keep other values as they are
   ))
 
@@ -101,9 +101,9 @@ Feb97 <- pivot_longer(Feb97,
 
 Feb97 <- Feb97 %>%
   mutate(rep = case_when(
-    rep == "C1_abun" ~ "C1_Feb97",
-    rep == "C2_abun" ~ "C2_Feb97",
-    rep == "C3_abun" ~ "C3_Feb97",
+    rep == "C1_abun" ~ "C1",
+    rep == "C2_abun" ~ "C2",
+    rep == "C3_abun" ~ "C3",
     TRUE ~ rep  # Keep other values as they are
   ))
 
@@ -127,7 +127,19 @@ class(merged_df$abundance)
 
 test <- RAC_change(df = merged_df, time.var = "year",  
                               species.var = "taxa", abundance.var = "abundance",
-                              replicate.var = NULL, reference.time = NULL)
+                              replicate.var = 'rep', reference.time = NULL)
 head(test)
+
+richnesschanges_carapa_plot <- ggplot(test, aes(year2, richness_change)) + 
+  labs(y="Species richness", x = "", colour = "") +
+  geom_line(size = 1) + 
+  ylim(-1, 1) +
+  theme_bw() + 
+  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) + # axis and ticks 
+  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
+  theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+
 
 write.csv(merged_df, 'carapaa.csv')
