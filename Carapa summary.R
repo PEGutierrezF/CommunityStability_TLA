@@ -113,10 +113,32 @@ Feb97$abundance <- as.numeric(Feb97$abundance)
 head(Feb97)
 
 
+# -------------------------------------------------------------------------
+Mar97 <- sheet_data[["Mar97"]]
+# Add the "year" column with rows as 1997
+Mar97$year <- 1998
+Mar97 <- pivot_longer(Mar97,
+                      names_to = "rep",
+                      cols = starts_with("C"),
+                      values_to = "abundance")
+
+Mar97 <- Mar97 %>%
+  mutate(rep = case_when(
+    rep == "C1_abun" ~ "C1",
+    rep == "C2_abun" ~ "C2",
+    rep == "C3_abun" ~ "C3",
+    TRUE ~ rep  # Keep other values as they are
+  ))
+
+
+Mar97 <- Mar97 %>% filter(abundance!= "0")
+Mar97$abundance <- as.numeric(Mar97$abundance)
+head(Mar97)
+
 
 
 # Assuming you have data frames Feb97 and Jan97
-merged_df <- bind_rows(Feb97, Jan97)
+merged_df <- bind_rows(Jan97,Feb97,Mar97)
 
 laselva <- turnover(df = merged_df, 
                          time.var = "year", 
