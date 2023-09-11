@@ -21,14 +21,14 @@ Carapa<-read.csv("codyCarapa.csv") # read the accompanying csv file
 head(Carapa)
 
 
-
 ###########################################################################
 # Codyn V2 ----------------------------------------------------------------
 ###########################################################################
 
-tableRAC_carapa <- RAC_change(df = Carapa, time.var = "time",  
+tableRAC_carapa <- RAC_change(df = Carapa, time.var = "year",  
            species.var = "taxa", abundance.var = "abundance",
             replicate.var = NULL,reference.time = NULL)
+
 head(tableRAC_carapa)
 
 min(tableRAC_carapa[,3])
@@ -63,9 +63,9 @@ RAC_difference(df = Carapa, time.var = "time",
 ###########################################################################
 
 turnover <- turnover(df = Carapa,  
-                         time.var = "time",  
-                         species.var = "taxa", 
-                         abundance.var = "abundance",
+                     time.var = "year",  
+                     species.var = "taxa", 
+                     abundance.var = "abundance",
                      replicate.var = NA, metric = "total")
 
 head(turnover)

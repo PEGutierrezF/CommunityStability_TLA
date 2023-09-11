@@ -87,7 +87,7 @@ Jan97 <- Jan97 %>%
 
 Jan97 <- Jan97 %>% filter(abundance!= "0")
 Jan97$abundance <- as.numeric(Jan97$abundance)
-head(Jan97)
+tail(Jan97)
 
 
 # -------------------------------------------------------------------------
