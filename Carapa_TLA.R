@@ -25,7 +25,7 @@ head(carapa)
 # Codyn V2 ----------------------------------------------------------------
 ###########################################################################
 
-tableRAC_carapa <- RAC_change(df = carapa, time.var = "year",  
+tableRAC_carapa <- RAC_change(df = carapa, time.var = "time",  
            species.var = "taxa", abundance.var = "abundance",
             replicate.var = NULL,reference.time = NULL)
 
@@ -62,8 +62,8 @@ RAC_difference(df = Carapa, time.var = "time",
 # Codyn V1 ----------------------------------------------------------------
 ###########################################################################
 
-turnover <- turnover(df = Carapa,  
-                     time.var = "year",  
+turnover <- turnover(df = carapa,  
+                     time.var = "time",  
                      species.var = "taxa", 
                      abundance.var = "abundance",
                      replicate.var = NA, metric = "total")
@@ -79,14 +79,14 @@ turnover[which.max(turnover$total),]
 mean(turnover[,1])
 
 
-appearance <- turnover(df = Carapa,  
+appearance <- turnover(df = carapa,  
                            time.var = "time",  
                            species.var = "taxa", 
                            abundance.var = "abundance", 
                            metric = "appearance")
 appearance
 
-disappearance <- turnover(df = Carapa, 
+disappearance <- turnover(df = carapa, 
                               time.var = "time",  
                               species.var = "taxa", 
                               abundance.var = "abundance", 

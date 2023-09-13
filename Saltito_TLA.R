@@ -11,16 +11,17 @@
 
 
 
-collins08
-Saltito<-read.csv("codySaltito.csv") # read the accompanying csv file
-head(Saltito)
+
+saltito <- read_xlsx("raw_data/data.xlsx", sheet = "saltito")
+head(saltito)
+
 
 
 ###########################################################################
 # Codyn V2 ----------------------------------------------------------------
 ###########################################################################
 
-tableRAC_saltito <- RAC_change(df = carapa, time.var = "time",  
+tableRAC_saltito <- RAC_change(df = saltito, time.var = "time",  
                               species.var = "taxa", abundance.var = "abundance",
                               replicate.var = NULL,reference.time = NULL)
 head(tableRAC_saltito)
