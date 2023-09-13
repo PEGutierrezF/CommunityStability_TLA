@@ -20,7 +20,7 @@ head(Saltito)
 # Codyn V2 ----------------------------------------------------------------
 ###########################################################################
 
-tableRAC_saltito <- RAC_change(df = Saltito, time.var = "time",  
+tableRAC_saltito <- RAC_change(df = carapa, time.var = "time",  
                               species.var = "taxa", abundance.var = "abundance",
                               replicate.var = NULL,reference.time = NULL)
 head(tableRAC_saltito)
@@ -68,6 +68,7 @@ turnoverSaltito <- turnover(df = Saltito,
                          species.var = "taxa", 
                          abundance.var = "abundance",
                      replicate.var = NA)
+
 
 turnoverSaltito
 min(turnoverSaltito[,1])

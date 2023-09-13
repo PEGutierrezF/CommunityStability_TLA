@@ -79,9 +79,9 @@ Jan97 <- pivot_longer(Jan97,
                              values_to = "abundance")
 Jan97 <- Jan97 %>%
   mutate(rep = case_when(
-    rep == "C1_abun" ~ "C1",
-    rep == "C2_abun" ~ "C2",
-    rep == "C3_abun" ~ "C3",
+    rep == "C1_abun" ~ "C1_Jan97",
+    rep == "C2_abun" ~ "C2_Jan97",
+    rep == "C3_abun" ~ "C3_Jan97",
     TRUE ~ rep  # Keep other values as they are
   ))
 
@@ -93,7 +93,7 @@ tail(Jan97)
 # -------------------------------------------------------------------------
 Feb97 <- sheet_data[["Feb97"]]
 # Add the "year" column with rows as 1997
-Feb97$year <- 1998
+Feb97$year <- 1997
 Feb97 <- pivot_longer(Feb97,
                       names_to = "rep",
                       cols = starts_with("C"),
@@ -101,9 +101,9 @@ Feb97 <- pivot_longer(Feb97,
 
 Feb97 <- Feb97 %>%
   mutate(rep = case_when(
-    rep == "C1_abun" ~ "C1",
-    rep == "C2_abun" ~ "C2",
-    rep == "C3_abun" ~ "C3",
+    rep == "C1_abun" ~ "C1_Feb97",
+    rep == "C2_abun" ~ "C2_Feb97",
+    rep == "C3_abun" ~ "C3_Feb97",
     TRUE ~ rep  # Keep other values as they are
   ))
 
@@ -116,7 +116,7 @@ head(Feb97)
 # -------------------------------------------------------------------------
 Mar97 <- sheet_data[["Mar97"]]
 # Add the "year" column with rows as 1997
-Mar97$year <- 1998
+Mar97$year <- 1997
 Mar97 <- pivot_longer(Mar97,
                       names_to = "rep",
                       cols = starts_with("C"),
@@ -124,9 +124,9 @@ Mar97 <- pivot_longer(Mar97,
 
 Mar97 <- Mar97 %>%
   mutate(rep = case_when(
-    rep == "C1_abun" ~ "C1",
-    rep == "C2_abun" ~ "C2",
-    rep == "C3_abun" ~ "C3",
+    rep == "C1_abun" ~ "C1_Mar97",
+    rep == "C2_abun" ~ "C2_Mar97",
+    rep == "C3_abun" ~ "C3_Mar97",
     TRUE ~ rep  # Keep other values as they are
   ))
 
@@ -135,7 +135,7 @@ Mar97 <- Mar97 %>% filter(abundance!= "0")
 Mar97$abundance <- as.numeric(Mar97$abundance)
 head(Mar97)
 
-
+write.csv(merged_df, 'pepito.csv')
 
 # Assuming you have data frames Feb97 and Jan97
 merged_df <- bind_rows(Jan97,Feb97,Mar97)

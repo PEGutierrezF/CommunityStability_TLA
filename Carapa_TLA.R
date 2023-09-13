@@ -14,18 +14,18 @@
 # cleans global environment
 rm(list = ls())
 
-# https://mran.microsoft.com/snapshot/2016-01-12/web/packages/codyn/vignettes/Temporal_Diversity_Indices.html
-# https://cran.r-project.org/web/packages/codyn/vignettes/codyn_overview.html
 
-Carapa<-read.csv("codyCarapa.csv") # read the accompanying csv file
-head(Carapa)
+
+
+carapa <- read_xlsx("raw_data/data.xlsx", sheet = "carapa")
+head(carapa)
 
 
 ###########################################################################
 # Codyn V2 ----------------------------------------------------------------
 ###########################################################################
 
-tableRAC_carapa <- RAC_change(df = Carapa, time.var = "year",  
+tableRAC_carapa <- RAC_change(df = carapa, time.var = "year",  
            species.var = "taxa", abundance.var = "abundance",
             replicate.var = NULL,reference.time = NULL)
 
