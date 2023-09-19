@@ -72,7 +72,7 @@ allturnoverCarapa
 
 #Create the graph
 turn.graphCarapa <- ggplot(allturnoverCarapa, aes(x=time, y=turnover, color=metric)) + 
-  geom_line(size = 1.2) +
+  geom_line(linewidth = 1.2) +
   scale_color_manual(name="Metrics",labels = c("Appearance","Disappearance","Total"),
                      values = c("appearance"="#34e383", "disappearance"="#e3347a", "total" ="#34a0e3")) +
   guides(color=guide_legend("Metrics"), size=guide_legend("Density")) +
@@ -143,7 +143,7 @@ RAC_difference(df = Carapa, time.var = "time",
 # Run the rank shift code -------------------------------------------------
 ###########################################################################
 
-rankshift_carapa <- rank_shift(df=Carapa, 
+rankshift_carapa <- rank_shift(df=carapa, 
                         time.var = "time", 
                         species.var = "taxa",
                         abundance.var = "abundance")
@@ -176,14 +176,14 @@ rankshift_carapa_plot
 # Rate change code --------------------------------------------------------
 ###########################################################################
 
-rateChangesCarapa <- rate_change(Carapa,   
+rateChangesCarapa <- rate_change(carapa,   
                                    time.var= "time",    
                                    species.var= "taxa",  
                                    abundance.var= "abundance")
 rateChangesCarapa
 
 
-rateChCarapa <- rate_change_interval(Carapa,   
+rateChCarapa <- rate_change_interval(carapa,   
                                  time.var= "time",    
                                  species.var= "taxa",  
                                  abundance.var= "abundance")
