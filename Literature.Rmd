@@ -1,0 +1,53 @@
+---
+title: "Literature"
+output: pdf_document
+date: "2023-09-29"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# **Some references**
+
+- For an overview of codyn, see:
+  
+Hallett LM, Jones SK, MacDonald AAA, Jones MB, Flynn DFB, Ripplinger J, 
+Slaughter P, Gries C, Collins SL (2016) codyn: An R package of community 
+dynamics metrics. Methods in Ecology and Evolution, 7(10):1146–1151. 
+https://doi.org/10.1111/2041-210X.12569
+
+
+- For a description of the newer spatial methods in codyn v2.x:
+  
+Avolio ML, Carroll IT, Collins SL, Houseman GR, Hallett LM, Isbell F, 
+Koerner SE, Komatsu KJ, Smith MD, Wilcox KR (2019) A comprehensive 
+approach to analyzing community dynamics using rank abundance curves. 
+Ecosphere, 10(10):e02881. https://doi.org/10.1002/ecs2.2881
+
+
+- https://rdrr.io/cran/codyn/f/vignettes/Temporal_Diversity_Indices.Rmd
+
+
+# **Examples**
+
+- Finderup Nielsen, Tora, Kaj Sand‐Jensen, Maria Dornelas, and Hans Henrik Bruun. 
+"More is less: net gain in species richness, but biotic homogenization over 140 
+years." Ecology Letters 22, no. 10 (2019): 1650-1657.
+https://onlinelibrary.wiley.com/doi/epdf/10.1111/ele.13361
+
+
+- Baranov, V., Jourdan, J., Pilotto, F., Wagner, R., & Haase, P. (2020). 
+Complex and nonlinear climate‐driven changes in freshwater insect communities 
+over 42 years. Conservation Biology, 34(5), 1241-1251.
+https://conbio.onlinelibrary.wiley.com/doi/full/10.1111/cobi.13477
+
+
+-Jones, S. K., Ripplinger, J., & Collins, S. L. (2017). Species reordering, 
+not changes in richness, drives long‐term dynamics in grassland communities.
+Ecology Letters, 20(12), 1556-1565.
+https://onlinelibrary.wiley.com/doi/full/10.1111/ele.12864
+
+
+
