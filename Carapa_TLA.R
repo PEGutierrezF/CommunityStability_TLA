@@ -114,6 +114,8 @@ min(tableRAC_carapa[,3])
 max(tableRAC_carapa[,3])
 mean(tableRAC_carapa[,3])
 
+# Export data
+#write.csv(tableRAC_carapa, 'data.csv',row.names=FALSE)
 
 # Create the graph
 richnesschanges_carapa_plot <- ggplot(tableRAC_carapa, aes(time2, richness_change)) + 
