@@ -22,7 +22,7 @@ libraries <- c("grid", "ggplot2", "plyr","dplyr", 'patchwork',
 
 lapply(libraries, require, character.only = TRUE)
 
-
+install.packages('ggplot2')
 
 
 
