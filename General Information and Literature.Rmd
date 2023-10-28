@@ -56,6 +56,7 @@ https://www.sciencedirect.com/science/article/pii/S1470160X17301395
 
 
 # **Synchrony Examples**
-García-Navas, V., Sattler, T., Schmid, H., & Ozgul, A. (2021). Spatial heterogeneity in temporal dynamics of Alpine bird communities along an elevational gradient. Journal of Biogeography, 48(4), 886-902.
+- García-Navas, V., Sattler, T., Schmid, H., & Ozgul, A. (2021). Spatial heterogeneity in temporal dynamics of Alpine bird communities along an elevational gradient. Journal of Biogeography, 48(4), 886-902.
 
+- Talas, L., Stivrins, N., Veski, S., Tedersoo, L., & Kisand, V. (2021). Sedimentary ancient DNA (sedaDNA) reveals fungal diversity and environmental drivers of community changes throughout the holocene in the present boreal Lake Lielais Svetinu (Eastern Latvia). Microorganisms, 9(4), 719.
 

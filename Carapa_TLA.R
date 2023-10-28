@@ -144,11 +144,14 @@ rateChCarapa <- rate_change_interval(carapa,
                                  abundance.var= "abundance")
 rateChCarapa  
 
-model <- lm(rateChCarapa$distance~rateChCarapa$interval)
-summary(model)
+mod1 <- lm(rateChCarapa$distance~rateChCarapa$interval)
+summary(mod1)
 
-model# Create the graph
+# Extract and print the slope (coefficient for rateChCarapa$interval)
+slope <- coef(mod1)[2]
+cat("Slope:", slope, "\n")
 
+# Plot Rate changes -------------------------------------------------------
 rate.Carapa<-ggplot(rateChCarapa, aes(interval, distance)) + 
   labs(y="Distance", x = "Intervals") +
   geom_point(shape=16, fill="gray10", color="gray10", size=1.5)+ 
