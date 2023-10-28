@@ -60,3 +60,4 @@ https://www.sciencedirect.com/science/article/pii/S1470160X17301395
 
 - Talas, L., Stivrins, N., Veski, S., Tedersoo, L., & Kisand, V. (2021). Sedimentary ancient DNA (sedaDNA) reveals fungal diversity and environmental drivers of community changes throughout the holocene in the present boreal Lake Lielais Svetinu (Eastern Latvia). Microorganisms, 9(4), 719.
 
+- Wilcox, K. R., Tredennick, A. T., Koerner, S. E., Grman, E., Hallett, L. M., Avolio, M. L., ... & Zhang, Y. (2017). Asynchrony among local communities stabilises ecosystem function of metacommunities. Ecology letters, 20(12), 1534-1545.

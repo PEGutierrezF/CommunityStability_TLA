@@ -38,7 +38,6 @@ mean(turnoverSaltito[,1])
 
 
 # Plot --------------------------------------------------------------------
-
 appearanceSaltito <- turnover(df = saltito,  
                            time.var = "time",  
                            species.var = "taxa", 
@@ -109,97 +108,47 @@ T1.. + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
 
 
 ###########################################################################
-# Codyn V2 ----------------------------------------------------------------
-###########################################################################
+# Community synchrony ---------------------------------------------------------------
+##########################################################################
 
-tableRAC_saltito <- RAC_change(df = saltito, time.var = "time",  
-                               species.var = "taxa", abundance.var = "abundance",
-                               replicate.var = NULL,reference.time = NULL)
-head(tableRAC_saltito)
+stab <- community_stability(saltito, 
+                            time.var = "time",
+                            abundance.var = "abundance")
+stab
 
-
-min(tableRAC_saltito[,3])
-max(tableRAC_saltito[,3])
-mean(tableRAC_saltito[,3])
-
-
-# Create the graph
-richnesschanges_saltito_plot <- ggplot(tableRAC_saltito, aes(time2, richness_change)) + 
-  labs(y="Species richness", x = "Time", colour = "") +
-  geom_line(size = 1) + 
-  ylim(-1,1) +
-  theme_bw() + 
-  theme(axis.text.y = element_text(colour = "black", size = rel(1))) + # axis size 
-  theme(axis.text.x = element_text(colour = "black", size = rel(1))) + # axis and ticks 
-  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
-  theme(axis.title.x = element_text(size = rel(1.25), angle = 0)) + # axis title
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-
-richnesschanges_saltito_plot
+# Calculate synchrony via loreau, merge with stab
+synch_loreau_saltito <- synchrony(df= saltito, 
+                                  time.var = "time",
+                                  species.var = "taxa",
+                                  abundance.var = "abundance",
+                                  replicate.var =NA,
+                                  metric="Loreau")
+synch_loreau_saltito
 
 
-speciesrichness <- richnesschanges_carapa_plot / richnesschanges_saltito_plot + plot_annotation(tag_levels = 'A')
-speciesrichness
+# Calculate synchrony via gross, merge with stab
+synch_gross_saltito <-synchrony(df= saltito, 
+                                time.var = "time",
+                                species.var = "taxa",
+                                abundance.var = "abundance",
+                                replicate.var =NA,
+                                metric="Gross")
 
-speciesrichness + ggsave("Figure 4.JPEG",width=6, height=4,dpi=600)
-
-
-
-RAC_difference(df = Carapa, time.var = "time", 
-               species.var = "taxa", abundance.var = "abundance", 
-               replicate.var= NULL, treatment.var = NULL, 
-               pool = FALSE, block.var = NULL, 
-               reference.treatment = NULL)
-
-###########################################################################
-# Run the rank shift code -------------------------------------------------
-###########################################################################
-
-rankshift_saltito <- rank_shift(df=Saltito, 
-                        time.var = "time", 
-                        species.var = "taxa",
-                        abundance.var = "abundance")
-
-rankshift_saltito
-
-#Select the final time point from the returned time.var_pair
-rankshift_saltito$samp_event <- seq(1, 122)
-rankshift_saltito
-
-# Create the graph
-rankshift_saltito_plot <- ggplot(rankshift_saltito, aes(samp_event, MRS)) + 
-  labs(y="Mean rank shift", x = "Sampling event", colour = "") +
-  geom_line(size = 1) + 
-  ylim(0, 4) +
-  theme_bw() + 
-  theme(axis.text.y = element_text(colour = "black", size = rel(1))) + # axis size 
-  theme(axis.text.x = element_text(colour = "black", size = rel(1))) + # axis and ticks 
-  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
-  theme(axis.title.x = element_text(size = rel(1.25), angle = 0)) + # axis title
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-
-rankshift_saltito_plot
-
-
-rs <- rankshift_carapa_plot / rankshift_saltito_plot + plot_annotation(tag_levels = 'A')
-rs
-
-rs + ggsave("Figure 3.JPEG",width=6, height=4,dpi=600)
-
+synch_gross_saltito
 
 
 ###########################################################################
 # Rate change code --------------------------------------------------------
 ###########################################################################
 
-rateChangesSaltito <- rate_change(Saltito,   
+rateChangesSaltito <- rate_change(saltito,   
                                    time.var= "time",    
                                    species.var= "taxa",  
                                    abundance.var= "abundance")
 rateChangesSaltito
 
 
-rateChSaltito <- rate_change_interval(Saltito,   
+rateChSaltito <- rate_change_interval(saltito,   
                                  time.var= "time",    
                                  species.var= "taxa",  
                                  abundance.var= "abundance")
@@ -227,57 +176,3 @@ RC <- rate.Carapa + rate.Saltito + plot_annotation(tag_levels = 'A')
 RC
 RC + ggsave("Figure 2.JPEG",width=6, height=4,dpi=600)
 
-
-# Calculate community stability -------------------------------------------
-
-
-
-stab <- community_stability(Saltito, 
-                            time.var = "time",
-                            abundance.var = "abundance")
-stab
-
-# Calculate synchrony via loreau, merge with stab
-synch_loreau_saltito <- synchrony(df= Saltito, 
-                          time.var = "time",
-                          species.var = "taxa",
-                          abundance.var = "abundance",
-                          replicate.var =NA,
-                          metric="Loreau")
-synch_loreau_saltito
-
-
-# Calculate synchrony via gross, merge with stab
-synch_gross_saltito <-synchrony(df= Saltito, 
-                       time.var = "time",
-                       species.var = "taxa",
-                       abundance.var = "abundance",
-                       replicate.var =NA,
-                       metric="Gross")
-
-synch_gross_saltito
-
-####### Calculate variance ratio, merge with stab ##########
-
-
-# VARIANCE RATIO The
-
-# If species vary independently, then the variance ratio will be
-# close to 1. Avariance ratio <1 indicates predominately 
-# negative species covariance, whereas a variance ratio 
-# >1 indicates that species generally positively covary.
-
-vRatio <- merge(variance_ratio(Carapa, time.var = "time",
-                           species.var = "taxa",
-                           abundance.var = "abundance",
-                           bootnumber=1, 
-                           average.replicates = F), stab)
-vRatio
-
-
-vr.graph <-ggplot(vRatio, aes(x=VR, y=stability)) + 
-  geom_point(size=3) +
-  theme_bw() +   
-  theme(text= element_text(size = 14))
-
-vr.graph
