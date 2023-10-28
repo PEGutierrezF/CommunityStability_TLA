@@ -101,78 +101,31 @@ turn.graphCarapa
 
 
 ###########################################################################
-# Codyn V2 ----------------------------------------------------------------
-###########################################################################
+# Community synchrony ---------------------------------------------------------------
+##########################################################################
 
-tableRAC_carapa <- RAC_change(df = carapa, time.var = "time",  
-           species.var = "taxa", abundance.var = "abundance",
-            replicate.var = NULL,reference.time = NULL)
+# Calculate synchrony via loreau, merge with stab
+synch_loreau <- synchrony(df= carapa, 
+                          time.var = "time",
+                          species.var = "taxa",
+                          abundance.var = "abundance",
+                          replicate.var =NA,
+                          metric="Loreau")
+synch_loreau
 
-head(tableRAC_carapa)
 
-min(tableRAC_carapa[,3])
-max(tableRAC_carapa[,3])
-mean(tableRAC_carapa[,3])
+# Calculate synchrony via gross, merge with stab
+synch_gross<-synchrony(df= Carapa, 
+                       time.var = "time",
+                       species.var = "taxa",
+                       abundance.var = "abundance",
+                       replicate.var =NA,
+                       metric="Gross")
 
-# Export data
-#write.csv(tableRAC_carapa, 'data.csv',row.names=FALSE)
-
-# Create the graph
-richnesschanges_carapa_plot <- ggplot(tableRAC_carapa, aes(time2, richness_change)) + 
-  labs(y="Species richness", x = "", colour = "") +
-  geom_line(size = 1) + 
-  ylim(-1, 1) +
-  theme_bw() + 
-  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
-  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) + # axis and ticks 
-  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
-  theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
-
-richnesschanges_carapa_plot
+synch_gross
 
 
 
-RAC_difference(df = Carapa, time.var = "time", 
-                species.var = "taxa", abundance.var = "abundance", 
-                replicate.var= NULL, treatment.var = NULL, 
-                pool = FALSE, block.var = NULL, 
-                reference.treatment = NULL)
-
-
-
-###########################################################################
-# Run the rank shift code -------------------------------------------------
-###########################################################################
-
-rankshift_carapa <- rank_shift(df=carapa, 
-                        time.var = "time", 
-                        species.var = "taxa",
-                        abundance.var = "abundance")
-
-rankshift_carapa
-
-min(rankshift_carapa[,2])
-max(rankshift_carapa[,2])
-mean(rankshift_carapa[,2])
-
-#Select the final time point from the returned time.var_pair
-rankshift_carapa$samp_event <- seq(1, 122)
-rankshift_carapa
-
-# Create the graph
-rankshift_carapa_plot <- ggplot(rankshift_carapa, aes(samp_event, MRS)) + 
-  labs(y="Mean rank shift", x = "", colour = "") +
-  geom_line(size = 1) + 
-  ylim(0, 4) +
-  theme_bw() + 
-  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
-  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) + # axis and ticks 
-  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
-  theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
-
-rankshift_carapa_plot
 
 ###########################################################################
 # Rate change code --------------------------------------------------------
@@ -211,71 +164,5 @@ rate.Carapa
  
 
 
-###########################################################################
-# Calculate community stability -------------------------------------------
-##########################################################################
 
-# Synchrony ---------------------------------------------------------------
-# Calculate synchrony via gross, merge with stab
-
-## Calculate community stability
-stab <- community_stability(df = Carapa, 
-                            time.var = "time",
-                            abundance.var = "abundance",
-                            replicate.var= NA)
-stab
-
-# Calculate synchrony via loreau, merge with stab
-synch_loreau <- synchrony(df= Carapa, 
-                              time.var = "time",
-                              species.var = "taxa",
-                              abundance.var = "abundance",
-                              replicate.var =NA,
-                              metric="Loreau")
-synch_loreau
-
-
-# Calculate synchrony via gross, merge with stab
-synch_gross<-synchrony(df= Carapa, 
-                             time.var = "time",
-                             species.var = "taxa",
-                             abundance.var = "abundance",
-                             replicate.var =NA,
-                             metric="Gross")
-
-synch_gross
-
-
-# Calculate variance ratio, merge with stab
-vr <- variance_ratio(df= Carapa,
-                     time.var = "time",
-                           species.var = "taxa",
-                           abundance.var = "abundance",
-                           replicate.var =NA,
-                           bootnumber=1, 
-                           average.replicates = F)
-vr
-
-
-# New functions -----------------------------------------------------------
-
-community_structure(df= Carapa,
-  time.var = "time",
-  abundance.var= "abundance",
-  replicate.var = NULL,
-  metric = "SimpsonEvenness") #"SimpsonEvenness": Calculates Simpson's evenness
-
-#Calculates changes in species richness, evenness, species' ranks, gains, 
-# and losses for each replicate
-
-RAC_change(df = Carapa,
-           species.var = "taxa",
-           abundance.var = "abundance",
-           time.var = "time")
-
-# For each species in a replicate, calculates changes in abundance
-abundance_change(df = Carapa,
-                 species.var = "taxa",
-                 abundance.var = "abundance",
-                 time.var = "time")
 

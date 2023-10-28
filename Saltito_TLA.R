@@ -36,14 +36,17 @@ turnoverSaltito[which.max(turnoverSaltito$total),]
 mean(turnoverSaltito[,1])
 
 
-appearanceSaltito <- turnover(df = Saltito,  
+
+# Plot --------------------------------------------------------------------
+
+appearanceSaltito <- turnover(df = saltito,  
                            time.var = "time",  
                            species.var = "taxa", 
                            abundance.var = "abundance", 
                            metric = "appearance")
 appearanceSaltito
 
-disappearanceSaltito <- turnover(df = Saltito, 
+disappearanceSaltito <- turnover(df = saltito, 
                               time.var = "time",  
                               species.var = "taxa", 
                               abundance.var = "abundance", 
