@@ -33,17 +33,42 @@ shapiro.test(data$Carapa_Biomass_TS)
 Carapa_Biomass_TS_new <- 1/(data$Carapa_Biomass_TS)
 shapiro.test(Carapa_Biomass_TS_new)
 
+# Transform Density Carapa
+# Reciprocal (inverse) transformation
+shapiro.test(data$Carapa_Density_TS)
+Carapa_Density_TS_new <- 1/sqrt(data$Carapa_Density_TS)
+shapiro.test(Carapa_Density_TS_new)
+
+
 
 # Linnear regression
-model <- lm(Carapa_Biomass_TS_new ~ Carapa_Sp_Rich_new)
+mod1 <- lm(Carapa_Biomass_TS_new ~ Carapa_Sp_Rich_new)
 # Print the summary of the regression model
-summary(model)
+summary(mod1)
 
 
+# Linnear regression
+mod2 <- lm(Carapa_Density_TS_new ~ Carapa_Sp_Rich_new)
+# Print the summary of the regression model
+summary(mod2)
 
-ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Biomass_TS_new)) +
+
+cP <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Biomass_TS_new)) +
   geom_point() +                   # Add scatter plot points
   geom_smooth(method = "lm", se = FALSE, color = "blue") +  # Add regression line
   labs(x = "Transformed Species Richness",
        y = "Transformed Biomass",
-       title = "Scatter Plot with Regression Line")
+       title = "")
+
+cP
+
+
+
+cD <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Density_TS_new)) +
+  geom_point() +                   # Add scatter plot points
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +  # Add regression line
+  labs(x = "Transformed Species Richness",
+       y = "Transformed Biomass",
+       title = "")
+
+cD
