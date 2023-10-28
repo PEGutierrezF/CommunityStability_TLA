@@ -16,62 +16,17 @@ saltito <- read_xlsx("raw_data/data.xlsx", sheet = "saltito")
 head(saltito)
 
 
-
-###########################################################################
-# Codyn V2 ----------------------------------------------------------------
-###########################################################################
-
-tableRAC_saltito <- RAC_change(df = saltito, time.var = "time",  
-                              species.var = "taxa", abundance.var = "abundance",
-                              replicate.var = NULL,reference.time = NULL)
-head(tableRAC_saltito)
-
-
-min(tableRAC_saltito[,3])
-max(tableRAC_saltito[,3])
-mean(tableRAC_saltito[,3])
-
-
-# Create the graph
-richnesschanges_saltito_plot <- ggplot(tableRAC_saltito, aes(time2, richness_change)) + 
-  labs(y="Species richness", x = "Time", colour = "") +
-  geom_line(size = 1) + 
-  ylim(-1,1) +
-  theme_bw() + 
-  theme(axis.text.y = element_text(colour = "black", size = rel(1))) + # axis size 
-  theme(axis.text.x = element_text(colour = "black", size = rel(1))) + # axis and ticks 
-  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
-  theme(axis.title.x = element_text(size = rel(1.25), angle = 0)) + # axis title
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
-
-richnesschanges_saltito_plot
-
-
-speciesrichness <- richnesschanges_carapa_plot / richnesschanges_saltito_plot + plot_annotation(tag_levels = 'A')
-speciesrichness
-
-speciesrichness + ggsave("Figure 4.JPEG",width=6, height=4,dpi=600)
-
-
-
-RAC_difference(df = Carapa, time.var = "time", 
-               species.var = "taxa", abundance.var = "abundance", 
-               replicate.var= NULL, treatment.var = NULL, 
-               pool = FALSE, block.var = NULL, 
-               reference.treatment = NULL)
-
 ###########################################################################
 # Codyn V1 ----------------------------------------------------------------
 ###########################################################################
 
-turnoverSaltito <- turnover(df = Saltito,  
+turnoverSaltito <- turnover(df = saltito,  
                          time.var = "time",  
                          species.var = "taxa", 
                          abundance.var = "abundance",
                      replicate.var = NA)
+head(turnoverSaltito)
 
-
-turnoverSaltito
 min(turnoverSaltito[,1])
 turnoverSaltito[which.min(turnoverSaltito$total),]
 
@@ -146,6 +101,52 @@ T1.. <-annotate_figure(T1., left = text_grob("Turnover", rot = 90,
 T1..
 
 T1.. + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
+
+
+
+
+###########################################################################
+# Codyn V2 ----------------------------------------------------------------
+###########################################################################
+
+tableRAC_saltito <- RAC_change(df = saltito, time.var = "time",  
+                               species.var = "taxa", abundance.var = "abundance",
+                               replicate.var = NULL,reference.time = NULL)
+head(tableRAC_saltito)
+
+
+min(tableRAC_saltito[,3])
+max(tableRAC_saltito[,3])
+mean(tableRAC_saltito[,3])
+
+
+# Create the graph
+richnesschanges_saltito_plot <- ggplot(tableRAC_saltito, aes(time2, richness_change)) + 
+  labs(y="Species richness", x = "Time", colour = "") +
+  geom_line(size = 1) + 
+  ylim(-1,1) +
+  theme_bw() + 
+  theme(axis.text.y = element_text(colour = "black", size = rel(1))) + # axis size 
+  theme(axis.text.x = element_text(colour = "black", size = rel(1))) + # axis and ticks 
+  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
+  theme(axis.title.x = element_text(size = rel(1.25), angle = 0)) + # axis title
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+richnesschanges_saltito_plot
+
+
+speciesrichness <- richnesschanges_carapa_plot / richnesschanges_saltito_plot + plot_annotation(tag_levels = 'A')
+speciesrichness
+
+speciesrichness + ggsave("Figure 4.JPEG",width=6, height=4,dpi=600)
+
+
+
+RAC_difference(df = Carapa, time.var = "time", 
+               species.var = "taxa", abundance.var = "abundance", 
+               replicate.var= NULL, treatment.var = NULL, 
+               pool = FALSE, block.var = NULL, 
+               reference.treatment = NULL)
 
 ###########################################################################
 # Run the rank shift code -------------------------------------------------
