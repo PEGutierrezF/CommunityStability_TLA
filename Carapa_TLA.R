@@ -115,14 +115,14 @@ synch_loreau
 
 
 # Calculate synchrony via gross, merge with stab
-synch_gross<-synchrony(df= Carapa, 
+synch_gross<-synchrony(df= carapa, 
                        time.var = "time",
                        species.var = "taxa",
                        abundance.var = "abundance",
                        replicate.var =NA,
                        metric="Gross")
 
-synch_gross
+summary(synch_gross)
 
 
 

@@ -55,3 +55,7 @@ Ecological Indicators, 83, 515-523.
 https://www.sciencedirect.com/science/article/pii/S1470160X17301395
 
 
+# **Synchrony Examples**
+García-Navas, V., Sattler, T., Schmid, H., & Ozgul, A. (2021). Spatial heterogeneity in temporal dynamics of Alpine bird communities along an elevational gradient. Journal of Biogeography, 48(4), 886-902.
+
+
