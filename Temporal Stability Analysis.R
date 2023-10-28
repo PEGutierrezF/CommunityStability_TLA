@@ -56,28 +56,6 @@ mod2 <- lm(Carapa_Density_TS_new ~ Carapa_Sp_Rich_new)
 summary(mod2)
 
 
-cP <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Biomass_TS_new)) +
-  geom_point() +                   # Add scatter plot points
-  geom_smooth(method = "lm", se = FALSE, color = "blue") +  # Add regression line
-  labs(x = "Transformed Species Richness",
-       y = "Transformed Biomass",
-       title = "")
-
-cP
-
-
-
-cD <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Density_TS_new)) +
-  geom_point() +                   # Add scatter plot points
-  geom_smooth(method = "lm", se = FALSE, color = "blue") +  # Add regression line
-  labs(x = "Transformed Species Richness",
-       y = "Transformed Biomass",
-       title = "")
-
-cD
-
-
-
 # Saltito -----------------------------------------------------------------
 
 
@@ -128,6 +106,29 @@ mod4 <- lm(Saltito_Density_TS_na_omit ~ Saltito_Sp_Rich_na_omit)
 summary(mod4)
 
 
+
+# Figures -----------------------------------------------------------------
+
+
+cP <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Biomass_TS_new)) +
+  geom_point() +                   # Add scatter plot points
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +  # Add regression line
+  labs(x = "Transformed Species Richness",
+       y = "Transformed Biomass",
+       title = "")
+
+cP
+
+
+
+cD <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Density_TS_new)) +
+  geom_point() +                   # Add scatter plot points
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +  # Add regression line
+  labs(x = "Transformed Species Richness",
+       y = "Transformed Biomass",
+       title = "")
+
+cD
 
 
 
