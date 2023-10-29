@@ -18,7 +18,7 @@ rm(list = ls())
 
 
 data <- read_excel('raw_data/ts_data.xlsx', sheet = 'ts')
-head(data.frm,6)
+head(data,6)
 
 
 
@@ -55,14 +55,14 @@ mod2 <- lm(Carapa_Density_TS_new ~ Carapa_Sp_Rich_new)
 # Print the summary of the regression model
 summary(mod2)
 
-
+###########################################################################
 # Saltito -----------------------------------------------------------------
-
+###########################################################################
 
 # Transform Species Richness Saltito
 # Square root transformation
 shapiro.test(data$Saltito_Sp_Rich)
-Saltito_Sp_Rich_new <- sqrt(data$Saltito_Sp_Rich+2)
+Saltito_Sp_Rich_new <- log(data$Saltito_Sp_Rich+10)
 shapiro.test(Saltito_Sp_Rich_new)
 
 # Transform Productivity Saltito
