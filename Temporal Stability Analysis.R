@@ -50,6 +50,13 @@ mod1 <- lm(Carapa_Biomass_TS_new ~ Carapa_Sp_Rich_new)
 summary(mod1)
 
 
+intercept <- coef(mod1)[1]
+slope <- coef(mod1)[2]
+# Now you can form the equation
+equation <- paste("y =", round(intercept, 2), "+", round(slope, 2), "* x")
+# Print the equation
+cat(equation)
+
 # Linnear regression
 mod2 <- lm(Carapa_Density_TS_new ~ Carapa_Sp_Rich_new)
 # Print the summary of the regression model
