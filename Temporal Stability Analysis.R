@@ -127,8 +127,8 @@ CP <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Biomass_TS_new)) +
   theme(axis.title.x = element_blank()) + # axis x
   # theme(axis.title.x = element_text(size = 12, angle = 0)) + # axis x
   theme(axis.title.y = element_text(size = 14, angle = 90, color="black")) + # axis y
-  # theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
-  theme(axis.text.x=element_blank()) + #subaxis x
+  theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
+  # theme(axis.text.x=element_blank()) + #subaxis x
   theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
 
   geom_text(aes(x = 3.5, y = 2),
@@ -150,8 +150,8 @@ CD <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Density_TS_new)) +
   #theme(axis.title.x = element_blank()) + # axis x
   theme(axis.title.x = element_text(size = 14, angle = 0)) + # axis x
   theme(axis.title.y = element_text(size = 14, angle = 90, color="black")) + # axis y
-  # theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
-  theme(axis.text.x=element_blank()) + #subaxis x
+  theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
+  # theme(axis.text.x=element_blank()) + #subaxis x
   theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
   
   geom_text(aes(x = 3.5, y = 1.5),
@@ -216,6 +216,8 @@ SD
 
 
 Fig1 <- (CP + SP) / (CD + SD)
-Fig1 + tiff("Fig1.tiff", width = 4, height = 4, units = "in", res = 300)
+
+Fig1 + ggsave("test.tiff", units="in", width=7, height=8, dpi=300, compression = 'lzw')
+
 
 
