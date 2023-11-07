@@ -131,9 +131,9 @@ CP <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Biomass_TS_new)) +
   # theme(axis.text.x=element_blank()) + #subaxis x
   theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
 
-  geom_text(aes(x = 3.5, y = 2),
+  geom_text(aes(x = 3.2, y = 2),
             label = "italic(y) == 1.52 - 0.15 * x * ',' ~italic(R)^2 ~'='~0.07~',' ~italic(p) ~'='~0.004",
-            color = "black", size=5, parse = TRUE)
+            color = "black", size=3.5, parse = TRUE)
 
 CP
 
@@ -154,9 +154,9 @@ CD <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Density_TS_new)) +
   # theme(axis.text.x=element_blank()) + #subaxis x
   theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
   
-  geom_text(aes(x = 3.5, y = 1.5),
+  geom_text(aes(x = 3.2, y = 1.5),
             label = "italic(y) == 1.52 - 0.15 * x * ',' ~italic(R)^2 ~'='~0.07~',' ~italic(p) ~'='~0.004",
-            color = "black", size=5, parse = TRUE)
+            color = "black", size=3.5, parse = TRUE)
 
 CD
 
@@ -180,9 +180,9 @@ SP <- ggplot(data, aes(x = Saltito_Sp_Rich_new, y = Saltito_Biomass_TS_new)) +
   #theme(axis.text.x=element_blank()) + #subaxis x
   # theme(axis.text.y=element_blank()) +
   
-  geom_text(aes(x = 3, y = 1.5),
+  geom_text(aes(x = 2.75, y = 1.5),
             label = "italic(y) == 1.52 - 0.15 * x * ',' ~italic(R)^2 ~'='~0.07~',' ~italic(p) ~'='~0.004",
-            color = "black", size=5, parse = TRUE)
+            color = "black", size=3.5, parse = TRUE)
 
 SP
 
@@ -199,7 +199,7 @@ SD <- ggplot(data_new, aes(x = Saltito_Sp_Rich_na_omit, y = Saltito_Density_TS_n
   
   # theme(axis.title.x = element_blank()) + # axis x
   theme(axis.title.y = element_blank()) + # axis x
-  theme(axis.title.x = element_text(size = 12, angle = 0)) + # axis x
+  theme(axis.title.x = element_text(size = 14, angle = 0)) + # axis x
   #theme(axis.title.y = element_text(size = 14, angle = 90, color="black")) + # axis y
   
   theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
@@ -207,9 +207,9 @@ SD <- ggplot(data_new, aes(x = Saltito_Sp_Rich_na_omit, y = Saltito_Density_TS_n
   #theme(axis.text.x=element_blank()) + #subaxis x
   # theme(axis.text.y=element_blank()) +
   
-  geom_text(aes(x = 3, y = 1.5),
+  geom_text(aes(x = 2.95, y = 1.5),
             label = "italic(y) == 1.52 - 0.15 * x * ',' ~italic(R)^2 ~'='~0.07~',' ~italic(p) ~'='~0.004",
-            color = "black", size=5, parse = TRUE)
+            color = "black", size=3.5, parse = TRUE)
 
 
 SD
@@ -217,7 +217,7 @@ SD
 
 Fig1 <- (CP + SP) / (CD + SD)
 
-Fig1 + ggsave("test.tiff", units="in", width=7, height=8, dpi=300, compression = 'lzw')
+ggsave("Figure 1.tiff", plot=Fig1, units="in", width=7, height=8, dpi=300, compression = 'lzw')
 
 
 
