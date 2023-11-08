@@ -129,7 +129,7 @@ CP <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Biomass_TS_new)) +
   theme(axis.title.y = element_text(size = 14, angle = 90, color="black")) + # axis y
   theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
   # theme(axis.text.x=element_blank()) + #subaxis x
-  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
+  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black"))  #subaxis y
 
   geom_text(aes(x = 3.2, y = 2),
             label = "italic(y) == 1.35 + -0.15 * x * ',' ~italic(R)^2 ~'='~0.07~',' ~italic(p) ~'='~0.004",
@@ -152,7 +152,7 @@ CD <- ggplot(data, aes(x = Carapa_Sp_Rich_new, y = Carapa_Density_TS_new)) +
   theme(axis.title.y = element_text(size = 14, angle = 90, color="black")) + # axis y
   theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
   # theme(axis.text.x=element_blank()) + #subaxis x
-  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
+  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black"))  #subaxis y
   
   geom_text(aes(x = 3.2, y = 1.5),
             label = "italic(y) == 1.03 + -0.10 * x * ',' ~italic(R)^2 ~'='~0.08~',' ~italic(p) ~'='~0.002",
@@ -164,7 +164,7 @@ CD
 
 SP <- ggplot(data, aes(x = Saltito_Sp_Rich_new, y = Saltito_Biomass_TS_new)) +
   geom_point() +                   # Add scatter plot points
-  geom_smooth(method = "lm", se = TRUE, color = "blue") +  # Add regression line
+  geom_smooth(method = "lm", se = TRUE, color = "blue", linetype = "dashed") +  # Add regression line
   labs(x = "",
        y = "",
        title = "") +
@@ -176,7 +176,7 @@ SP <- ggplot(data, aes(x = Saltito_Sp_Rich_new, y = Saltito_Biomass_TS_new)) +
   #theme(axis.title.y = element_text(size = 14, angle = 90, color="black")) + # axis y
   
   theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
-  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
+  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black"))  #subaxis y
   #theme(axis.text.x=element_blank()) + #subaxis x
   # theme(axis.text.y=element_blank()) +
   
@@ -190,7 +190,7 @@ SP
 
 SD <- ggplot(data_new, aes(x = Saltito_Sp_Rich_na_omit, y = Saltito_Density_TS_na_omit)) +
   geom_point() +                   # Add scatter plot points
-  geom_smooth(method = "lm", se = TRUE, color = "blue") +  # Add regression line
+  geom_smooth(method = "lm", se = TRUE, color = "blue", linetype = "dashed") +  # Add regression line
   labs(x = "Species Richness",
        y = "",
        title = "") +
@@ -203,7 +203,7 @@ SD <- ggplot(data_new, aes(x = Saltito_Sp_Rich_na_omit, y = Saltito_Density_TS_n
   #theme(axis.title.y = element_text(size = 14, angle = 90, color="black")) + # axis y
   
   theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
-  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
+  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) #subaxis y
   #theme(axis.text.x=element_blank()) + #subaxis x
   # theme(axis.text.y=element_blank()) +
   
