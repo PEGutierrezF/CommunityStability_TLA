@@ -102,7 +102,10 @@ T1.. <-annotate_figure(T1., left = text_grob("Turnover", rot = 90,
 
 T1..
 
-T1.. + ggsave("Figure 1.JPEG",width=6, height=4,dpi=600)
+ggsave("Figure 1.tiff", plot=T1.., units="in", width=8, height=8, dpi=300, compression = 'lzw')
+
+
+T1.. + ggsave("Figure 1.JPEG",width=6, height=8,dpi=600)
 
 
 
