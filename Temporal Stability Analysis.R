@@ -215,9 +215,11 @@ SD <- ggplot(data_new, aes(x = Saltito_Sp_Rich_na_omit, y = Saltito_Density_TS_n
 SD
 
 
-Fig1 <- (CP + SP) / (CD + SD)
+Fig2 <- (CP + SP) / (CD + SD) 
+Fig2 <- Fig2 + plot_annotation(tag_levels = list(c('(a)','(b)', '(c)','(d)')))
+Fig2
 
-ggsave("Figure 1.tiff", plot=Fig1, units="in", width=7, height=8, dpi=300, compression = 'lzw')
+ggsave("Figure 2.tiff", plot = Fig2, units="in", width=8, height=8, dpi=300, compression = 'lzw')
 
 
 

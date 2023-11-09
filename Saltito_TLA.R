@@ -93,19 +93,20 @@ turn.graphSaltito <- ggplot(allturnoverSaltito, aes(x=time, y=turnover, color=me
 turn.graphSaltito 
 
 T1. <- ggarrange(turn.graphCarapa , turn.graphSaltito, align = "v",
-                        labels = c("A", "B"),font.label = list(size = 13, face= "plain", 
-                      color = "black"), ncol = 1, nrow = 2, common.legend = TRUE)
+                        labels = c("(a)", "(b)"), font.label = list(size = 13, face= "plain", 
+                      color = "black"), ncol = 1, nrow = 2, common.legend = TRUE,
+                 label.x = 0.0,    # Adjust the x position of the labels
+                 label.y = c(1.1, 1.1))  # Adjust the y position of the labels) 
 
-
+T1.
 T1.. <-annotate_figure(T1., left = text_grob("Turnover", rot = 90,
                   color = "Black", face = "plain", size = 12))
 
 T1..
 
-ggsave("Figure 1.tiff", plot=T1.., units="in", width=8, height=8, dpi=300, compression = 'lzw')
+ggsave("Figure 1.tiff", plot=T1.., units="in", width=5, height=6, dpi=300, compression = 'lzw')
 
 
-T1.. + ggsave("Figure 1.JPEG",width=6, height=8,dpi=600)
 
 
 
