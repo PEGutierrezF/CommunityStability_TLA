@@ -179,3 +179,46 @@ RC <- rate.Carapa + rate.Saltito + plot_annotation(tag_levels = 'A')
 RC
 RC + ggsave("Figure 2.JPEG",width=6, height=4,dpi=600)
 
+
+
+###########################################################################
+# Run the rank shift code -------------------------------------------------
+###########################################################################
+rankshift_saltito <- rank_shift(df=saltito, 
+                                time.var = "time", 
+                                species.var = "taxa",
+                                abundance.var = "abundance")
+
+rankshift_saltito
+
+#Select the final time point from the returned time.var_pair
+rankshift_saltito$samp_event <- seq(1, 122)
+rankshift_saltito
+
+min(rankshift_saltito[,2])
+max(rankshift_saltito[,2])
+mean(rankshift_saltito[,2])
+
+
+# Create the graph
+rankshift_saltito_plot <- ggplot(rankshift_saltito, aes(samp_event, MRS)) + 
+  labs(y="Mean rank shift", x = "Sampling event", colour = "") +
+  geom_line(size = 1) + 
+  ylim(0, 4) +
+  theme_bw() + 
+  theme(axis.text.y = element_text(colour = "black", size = rel(1))) + # axis size 
+  theme(axis.text.x = element_text(colour = "black", size = rel(1))) + # axis and ticks 
+  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
+  theme(axis.title.x = element_text(size = rel(1.25), angle = 0)) + # axis title
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank())
+
+rankshift_saltito_plot
+
+
+
+rs <- rankshift_carapa_plot / rankshift_saltito_plot + plot_annotation(tag_levels = 'A')
+rs
+
+rs + ggsave("Figure 3.JPEG",width=6, height=4,dpi=600)
+
+
