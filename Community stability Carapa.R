@@ -125,6 +125,9 @@ synch_gross<-synchrony(df= carapa,
 summary(synch_gross)
 
 
+###########################################################################
+# mean rank shift (MRS) ---------------------------------------------------
+###########################################################################
 
 
 ###########################################################################
@@ -166,6 +169,38 @@ rate.Carapa
 
  
 
+###########################################################################
+# Run the rank shift code -------------------------------------------------
+###########################################################################
+
+rankshift_carapa <- rank_shift(df=carapa, 
+                               time.var = "time", 
+                               species.var = "taxa",
+                               abundance.var = "abundance")
+
+rankshift_carapa
+
+min(rankshift_carapa[,2])
+max(rankshift_carapa[,2])
+mean(rankshift_carapa[,2])
+
+#Select the final time point from the returned time.var_pair
+rankshift_carapa$samp_event <- seq(1, 122)
+rankshift_carapa
+
+# Create the graph
+rankshift_carapa_plot <- ggplot(rankshift_carapa, aes(samp_event, MRS)) + 
+  labs(y="Mean rank shift", x = "", colour = "") +
+  geom_line(size = 1) + 
+  ylim(0, 4) +
+  theme_bw() + 
+  theme(axis.text = element_text(colour = "black", size = rel(1))) + #axis size 
+  theme(axis.title.x=element_blank(), axis.text.x=element_blank(), axis.ticks.x=element_blank()) + # axis and ticks 
+  theme(axis.title.y = element_text(size = rel(1.25), angle = 90)) +  # axis title
+  theme(axis.title.x = element_text(size = rel(1.25), angle = 0))+ # axis title
+  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank()) 
+
+rankshift_carapa_plot
 
 
 
