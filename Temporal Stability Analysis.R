@@ -17,7 +17,7 @@ rm(list = ls())
 
 
 
-data <- read_excel('raw_data/ts_data.xlsx', sheet = 'ts')
+data <- read_excel('raw_data/temporal_stability_data.xlsx', sheet = 'ts')
 head(data,6)
 
 
@@ -176,7 +176,7 @@ SP <- ggplot(data, aes(x = Saltito_Sp_Rich_new, y = Saltito_Biomass_TS_new)) +
   #theme(axis.title.y = element_text(size = 14, angle = 90, color="black")) + # axis y
   
   theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
-  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black"))  #subaxis y
+  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
   #theme(axis.text.x=element_blank()) + #subaxis x
   # theme(axis.text.y=element_blank()) +
   
@@ -185,7 +185,6 @@ SP <- ggplot(data, aes(x = Saltito_Sp_Rich_new, y = Saltito_Biomass_TS_new)) +
             color = "black", size=3.5, parse = TRUE)
 
 SP
-
 
 
 SD <- ggplot(data_new, aes(x = Saltito_Sp_Rich_na_omit, y = Saltito_Density_TS_na_omit)) +
@@ -203,23 +202,25 @@ SD <- ggplot(data_new, aes(x = Saltito_Sp_Rich_na_omit, y = Saltito_Density_TS_n
   #theme(axis.title.y = element_text(size = 14, angle = 90, color="black")) + # axis y
   
   theme(axis.text.x=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis x
-  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) #subaxis y
+  theme(axis.text.y=element_text(angle=0, size=10, vjust=0.5, color="black")) + #subaxis y
   #theme(axis.text.x=element_blank()) + #subaxis x
   # theme(axis.text.y=element_blank()) +
   
   geom_text(aes(x = 2.95, y = 1.5),
             label = "italic(y) == 0.91 + -0.07 * x * ',' ~italic(R)^2 ~'='~0.02~',' ~italic(p) ~'='~0.09",
-            color = "black", size=3.5, parse = TRUE)
+            color = "black", size=3.5, parse = TRUE) 
 
 
 SD
 
 
-Fig2 <- (CP + SP) / (CD + SD) 
+Fig2 <- (CP + SP.) / (CD + SD) 
 Fig2 <- Fig2 + plot_annotation(tag_levels = list(c('(a)','(b)', '(c)','(d)')))
 Fig2
 
 ggsave("Figure 2.tiff", plot = Fig2, units="in", width=8, height=8, dpi=300, compression = 'lzw')
+
+
 
 
 
